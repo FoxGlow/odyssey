@@ -2,7 +2,7 @@
 /**
  * The id was not found
  * 
- * @author Hugolin Mariette <hugolinma@gmail.com>
+ * @author Hugolin Mariette
  */
 
 namespace Core\Container\Exceptions;

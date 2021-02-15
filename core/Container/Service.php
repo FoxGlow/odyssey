@@ -2,7 +2,7 @@
 /**
  * Class to design a Service
  * 
- * @author Hugolin Mariette <hugolinma@gmail.com>
+ * @author Hugolin Mariette
  */
 
 namespace Core\Container;

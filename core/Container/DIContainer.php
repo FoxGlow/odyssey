@@ -3,7 +3,7 @@
  * 
  * Dependency Injection Container
  * 
- * @author Hugolin Mariette <hugolinma@gmail.com>
+ * @author Hugolin Mariette
  * 
  */
 
