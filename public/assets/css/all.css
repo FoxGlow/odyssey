@@ -24,13 +24,17 @@ div {
 nav {
     background-color: var(--black);
     color: var(--white);
-    height: 70px;
     width: 100%;
+    padding: 15px 0 15px 0;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+}
+
+nav div.nav-empty {
+    flex-grow: 1;
 }
 
 nav a {
@@ -64,10 +68,27 @@ nav div.nav-title span {
     margin-left: 10px;
 }
 
-nav div.nav-general a {
+nav div.nav-general a, nav div.nav-user a {
     margin: 0 12px 0 12px;
 }
 
 nav div.nav-general a:first-child {
     margin-left: 60px;
+}
+
+nav div.nav-separator img {
+    transform: rotate(-45deg);
+    height: 18px;
+    margin: 0 10px 0 10px;
+}
+
+nav div.nav-user {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+nav div.nav-user div.nav-right {
+    margin-right: 30px;
 }
