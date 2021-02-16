@@ -1,9 +1,11 @@
-/* GÉNÉRAL */
+/* GENERAL */
 
 html {
     --black: #000000;
     --white: #ffffff;
     --green: #6FCF97;
+    --light-gray: #E2E5E7;
+    --red-orange: #BF4F4F;
 }
 
 body {
@@ -11,6 +13,7 @@ body {
     padding: 0;
     font-family: Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     overflow-x: hidden;
+    background-color: var(--white);
 }
 
 div {
@@ -18,6 +21,21 @@ div {
     padding: 0;
 }
 
+h1 {
+    font-weight: 300;
+}
+
+h2 {
+    font-weight: 200;
+}
+
+p {
+    font-weight: 100;
+}
+
+a {
+    text-decoration: none;
+}
 
 /* NAVIGATION */
 
@@ -39,7 +57,6 @@ nav div.nav-empty {
 
 nav a {
     color: var(--white);
-    text-decoration: none;
     font-size: 15px;
 }
 
@@ -91,4 +108,10 @@ nav div.nav-user {
 
 nav div.nav-user div.nav-right {
     margin-right: 30px;
+}
+
+/* OTHER */
+
+span.strong {
+    font-weight: 500;
 }
