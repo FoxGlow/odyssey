@@ -1,4 +1,9 @@
 <?php
+/**
+ * Entry point
+ * 
+ * @author Hugolin Mariette
+ */
 
 /**
  * -------------------------------------------------------------------------+
@@ -9,7 +14,6 @@
  * 
  */
 define('ROOT', dirname(__DIR__));
-
 
 /**
  * -------------------------------------------------------------------------+
@@ -22,8 +26,36 @@ define('ROOT', dirname(__DIR__));
  */
 require_once ROOT . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
-// Pour tester
+/**
+ * -------------------------------------------------------------------------+
+ * LOADING ENVIRONMENT VARIABLES                                            |
+ * -------------------------------------------------------------------------+
+ * 
+ * Dotenv is used to access easily to the env variables sets in the .env
+ * file located at the root. The best way to access these variables for you
+ * is to use config() function or Config class (this is why Dotenv is not
+ * defined by default in services configuration file).
+ * 
+ */
+$dotenv = Dotenv\Dotenv::createUnsafeImmutable(ROOT);
+$dotenv->load();
+$dotenv->required(['APP_DEBUG']);
+
+/**
+ * -------------------------------------------------------------------------+
+ * REGISTER THE PRETTY HANDLER (if debug mode is true)                      |
+ * -------------------------------------------------------------------------+
+ * 
+ * This is a beautiful error handler framework for PHP called whoops.
+ *  
+ */
+if (getenv('APP_DEBUG') === "true") {
+    $whoops = new \Whoops\Run;
+    $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+    $whoops->register();
+}
+
+// To test web pages
 $loader = new \Twig\Loader\FilesystemLoader(ROOT . '/app/Views');
 $twig = new \Twig\Environment($loader, []);
-
-echo $twig->render('template.html.twig');
+echo $twig->render('pages/home.html.twig');
