@@ -1,0 +1,46 @@
+{% extends 'template.html.twig' %}
+
+{% block head %}
+    <title>Odyssey >> Accueil</title>
+    <link rel="stylesheet" href="assets/css/home.css">
+{% endblock %}
+
+{% block content %}
+    <img id="home-wave" src="assets/images/home/wave.svg" alt="wave" />
+
+    <div class="container">
+        <div class="free-text">
+            <h1>Vous êtes <span class="strong">Étudiant</span> ou <span class="strong">Business Analyst</span> ?</h1>
+            <p>Grâce à <span class="strong">Odyssey</span>, vérifiez vos axes d'analyse facilement et rapidement.</p>
+        </div>
+
+        <div class="home-card">
+            <h1>Vous pouvez...</h1>
+
+            <div class="home-card-item">
+                <img src="assets/images/home/chat.svg" alt="chat" />
+                <p>Collaborer à plusieurs sur vos projets</p>
+            </div>
+            <div class="home-card-item">
+                <img src="assets/images/home/bell.svg" alt="bell" />
+                <p>Obtenir des conseils dans votre analyse</p>
+            </div>
+            <div class="home-card-item">
+                <img src="assets/images/home/inbox.svg" alt="inbox" />
+                <p>Vérifier la cohérence entre votre story map et votre BPMN</p>
+            </div>
+            <div class="home-card-item">
+                <img src="assets/images/home/placeholder.svg" alt="placeholder" />
+                <p>Vérifier la présence de vos flux MCF dans votre BPMN</p>
+            </div>
+            <div class="home-card-item">
+                <img src="assets/images/home/calculator.svg" alt="calculator" />
+                <p>Calculer le taux de couverture de vos projets</p>
+            </div>
+
+            <div class="home-card-link">
+                <a href="">Créer un compte</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
