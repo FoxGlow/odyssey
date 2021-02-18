@@ -54,3 +54,15 @@ if (getenv('APP_DEBUG') === "true") {
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
     $whoops->register();
 }
+
+/**
+ * -------------------------------------------------------------------------+
+ * BOOT UP APPLICATION                                                      |
+ * -------------------------------------------------------------------------+
+ * 
+ * Builds the application and launches it.
+ * 
+ */
+$app = require_once ROOT . DIRECTORY_SEPARATOR . 'core' . DIRECTORY_SEPARATOR . 
+    'bootstrap' . DIRECTORY_SEPARATOR . 'application.php';
+$app->launch();
