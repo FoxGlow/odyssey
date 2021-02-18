@@ -54,8 +54,3 @@ if (getenv('APP_DEBUG') === "true") {
     $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
     $whoops->register();
 }
-
-// To test web pages
-$loader = new \Twig\Loader\FilesystemLoader(ROOT . '/app/Views');
-$twig = new \Twig\Environment($loader, []);
-echo $twig->render('pages/home.html.twig');
