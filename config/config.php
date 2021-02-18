@@ -53,7 +53,7 @@ return [
      * 
      */
     'db' => [
-        'connection' => getenv('DB_CONNECTION'),
+        'type' => getenv('DB_TYPE'),
         'host' => getenv('DB_HOST'),
         'name' => getenv('DB_NAME'),
         'charset' => getenv('DB_CHARSET'),
