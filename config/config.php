@@ -35,7 +35,8 @@ return [
      * 
      */
     'paths' => [
-        'views_dir' => ROOT . '/app/Views/',
+        'config_dir' => ROOT . '/config',
+        'views_dir' => ROOT . '/app/Views',
         'controllers_dir' => ROOT . '/app/Controllers',
         'entities_dir' => ROOT . '/app/Entities',
         'assets_dir' => '/assets',
