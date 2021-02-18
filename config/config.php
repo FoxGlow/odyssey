@@ -17,8 +17,7 @@ return [
      * APPLICATION CONFIGURATION                                                |
      * -------------------------------------------------------------------------+
      * 
-     * It defines the state of the application (debug mode or not), and it
-     * contains the url of the website.
+     * It defines the state of the application (debug mode or not).
      * 
      */
     'app' => [
