@@ -7,14 +7,15 @@
 
 namespace Core\File;
 
-use Core\File\Exceptions\ConfigFileNotFound;
+use Core\File\Exceptions\ConfigFileNotFoundException;
 use Core\File\Exceptions\KeyNotFoundException;
+use Core\File\Exceptions\NoConfigFileLoadedException;
 
 class Config {
     /**
      * @var array the configuration
      */
-    private static $config;
+    private static $config = null;
 
     /**
      * Loads a config file that return an array
@@ -25,7 +26,7 @@ class Config {
         try {
             self::$config = require($config_file);
         }
-        catch (ConfigFileNotFound $e) {
+        catch (ConfigFileNotFoundException $e) {
             throw $e;
         }
     }
@@ -38,6 +39,7 @@ class Config {
      * @return mixed
      */
     public static function get(?string $key = null, $default = null) {
+        if (self::$config === null) throw new NoConfigFileLoadedException();
         if (is_null($key) || $key === "") return self::$config;
         $exploded_key = explode('.', $key);
         $depth = count($exploded_key);
