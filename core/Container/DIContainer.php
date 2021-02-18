@@ -7,7 +7,7 @@
  * 
  */
 
-namespace Core\Nugget\Container;
+namespace Core\Container;
 
 use Psr\Container\ContainerInterface;
 use Core\Container\Service;
