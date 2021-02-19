@@ -2,31 +2,40 @@
     <div class="nav-logo">
         <img src="assets/images/nav/rocket.svg" alt="Odyssey logo" />
     </div>
+
     <div class="nav-title">
         <span>Odyssey</span>
     </div>
+
     <div class="nav-general">
-        <a href="" id="selected">Accueil</a>
-        <a href="">Getting started</a>
-        <a href="">Crédits</a>
+        <a href="/" id="selected">Accueil</a>
+        <a href="/getting-started">Getting started</a>
+        <a href="/credits">Crédits</a>
     </div>
+
     <div class="nav-separator">
         <img src="assets/images/nav/line.svg" alt="line" />
     </div>
+
     <div class="nav-user">
-        <div class="nav-user-authenticated">
-            <a href="">Mes projets</a>
-            <a href="">Créer un projet</a>
-        </div>
-        <div class="nav-empty"></div>
         <!--
-        <div class="nav-user-guest nav-right">
-            <a href="">Se connecter</a>
-            <a href="">S'inscrire</a>
+        <div class="nav-user-authenticated">
+            <a href="/project/list">Mes projets</a>
+            <a href="/project/new">Créer un projet</a>
         </div>
         -->
+
+        <div class="nav-empty"></div>
+        
+        <div class="nav-user-guest nav-right">
+            <a href="/user/login">Se connecter</a>
+            <a href="/user/register">S'inscrire</a>
+        </div>
+
+        <!--
         <div class="nav-user-authenticated-name nav-right">
             <span class="nav-user-name">Bonjour <strong>Test{{ username }}<strong></span>
         </div>
+        -->
     </div>
 </nav>
