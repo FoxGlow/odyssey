@@ -28,6 +28,7 @@ return [
     
     'twig' => function (ContainerInterface $c) {
         $twig = new \Twig\Environment($c->get('twigloader'), []);
+        $twig->addExtension(new \App\Twig\AppExtension);
         return $twig;
     }
 
