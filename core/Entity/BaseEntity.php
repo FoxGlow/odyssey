@@ -16,10 +16,9 @@ class BaseEntity {
     protected $db_connection;
 
     /**
-     * Creates a BaseEntity
-     * @param Connection $db_connection the connection to database
+     * Creates a BaseEntity and initializes it's connection to database
      */
-    public function __construct(Connection $db_connection) {
-        $this->db_connection = $db_connection;
+    public function __construct() {
+        $this->db_connection = new Connection;
     }
 }
