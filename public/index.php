@@ -102,7 +102,11 @@ switch ($route_info[0]) {
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $route_info[1];
-        $vars = $route_info[2];
+        if ($http_method == 'POST')
+            $vars = $_POST;
+        else
+            $vars = $route_info[2];
+
         $app->found($handler, $vars);
         break;
 }
