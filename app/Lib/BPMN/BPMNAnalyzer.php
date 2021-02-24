@@ -1,108 +1,100 @@
 <?php
 /**
  * Class to analyze .bpmn file content
- * @author 
+ * @author Simon Boutrouille, Amaury Denis, Kamelia Brahimi, Thileli Saci, Zineb Brahimi
  */
 
 class BPMNAnalyzer {
     /**
      * @var String
      */
-    private $file_content;
+    public $file_content; //needs to be changed to private later
+
+    public $index; //needs to be changed to private later
 
     /**
-     * Loads the whole file content in analyzer as a string without line breaks and indentation
-     * @param array $file_content the .bpmn file content
+     * Loads the whole file content in analyzer as a string
+     * @param string $file_content the .bpmn file content
      * @return self
      */
-    public function loadFileContent(array $file_content) {
-        foreach ($file_content as &$value) {
-            $this->file_content .= trim($value);
-        }
+    public function loadFileContent(string $file_content) {
+        $this->file_content = $file_content;
+        $this->index = 0;
         return $this;
     }
     
     /**
      * Finds tag name
-     * @param string $source the source code to process
-     * @param int $index
-     * @return string
+     * @return string the tag name
      */
-    public function extractNameTag($source, $index) {
-        $name_tag = "";
-        while ($source[$index]==" ") {
-            $index += 1;
+    private function extractTagName() {
+        $tag_name = "";
+        while ($this->file_content[$this->index] != ">" && $this->file_content[$this->index] != " ") {
+            $tag_name .= $this->file_content[$this->index];
+            $this->index++;
         }
-        while ($source[$index]!=">" and $source[$index]!=" ") {
-            $name_tag .= $source[$index];
-            $index += 1;
-        }
-      	if ($index[0] < sizeof($source)-1) {
-        	while ($source[$index]==">" or $source[$index]==" ") {
-            	$index += 1;
+      	if ($this->index < (strlen($this->file_content)-1)) {
+        	while ($this->file_content[$this->index] == ">" || $this->file_content[$this->index] == " ") {
+            	$this->index++;
             }
         }
-        return $name_tag;
+        return trim($tag_name);
     }
 
     /**
      * Processes a tag
-     * @param string $source the source code to process
-     * @param int $index
-     * @param array $tag A tag is represented by an array of 3 elements, of the form: $tag = array($name_tag, $child_tags, $text)
+     * @param array $tag A tag is represented by an array of 3 elements, of the form: $tag = array($tag_name, $child_tags, $text)
      * The first element of the array is a string specifying the name of the tag.
      * The second element of the array is the list of tags contained in the tag, also called child tags.
      * The third element in the array is the text contained in the tag.
      */
-    public function analyze_tag($source, $index, $tag) {
+    private function analyzeTag(array &$tag) {
         $text = "";
-        while ($index < sizeof($source)) {
-            $c = $source[$index];
-            if ($c=="<") { // waiting for new tag or end of current tag's analysis
-                if ($source[$index+1]=="/") { // tag's end
-                    $index += 2;
-                    $name_tag = extractNameTag($source, $index);
-                    if ($name_tag!=$tag[0]) {
+        while ($this->index < strlen($this->file_content)) {
+            $c = $this->file_content[$this->index];
+            if ($c == "<") { // waiting for new tag or end of current tag's analysis
+                if ($this->file_content[$this->index + 1] == "/") { // tag's end
+                    $this->index += 2;
+                    $tag_name = $this->extractTagName();
+                    if ($tag_name != $tag[0]) {
                         exit("Erreur de balise fermante");
                     }
                     else {
-                        $tag[2] = $text;
+                        $tag[2] = $text;//array_push($tag[2], $text);
                         return;
                     }
                 }
-                else {
-                    $index += 1;
-                    $name_tag = extractNameTag($source, $index);
-                    $child_tag = array($name_tag, array(), "");
-                    analyze_tag($source, $index, $child_tag);
-                    array_push($tag[1], $child_tag);
+                else { //start of tag
+                    $this->index++;
+                    $tag_name = $this->extractTagName();
+                    $child_tag = array($tag_name, array(), "");
+                    $this->analyzeTag($child_tag);
+                    array_push($tag[1], $child_tag);//$tag[1] = $child_tag;//
                 }
             }
             else {
                 $text .= $c;
-                $index += 1;
+                $this->index++;
             }
         }
     }
 
     /**
      * Starts analysis of source code and detects first opening tag
-     * @param string $source the source code to process
      * @return array list of tags
      */
-    public function analyze($source) {
-        $index = 0;
-        while ($index < sizeof($source)) {
-            $c = $source[$index];
-            if ($c=="<") {
-                $index += 1;
-                $name_tag = extractNameTag($source, $index);
-                $tag = array($name_tag, array(), "");
-                analyze_tag($source, $index, $tag);
+    public function analyze() {
+        while ($this->index < strlen($this->file_content)) {
+            $c = $this->file_content[$this->index];
+            if ($c == "<") {
+                $this->index++;
+                $tag_name = $this->extractTagName();
+                $tags = array($tag_name, array(), "");
+                $this->analyzeTag($tags);
             }
-            $index += 1;
+            $this->index++;
         }
-        return $tag;
+        return $tags;
     }
 
     /**
@@ -111,20 +103,16 @@ class BPMNAnalyzer {
      * @param array $tag
      * @param string $indent
      */
-    public function show_tree($tag, $indent="") {
+    public function showTree(array $tags, string $indent = "") {
         $indent .= "\t";
-        print "$indent<$tag[0]>";
-        foreach ($tag[1] as $child_tag) {
-            show_tree($child_tag, $indent);
+        print "$indent<$tags[0]>";
+        foreach ($tags[1] as $child_tag) {
+            $this->showTree($child_tag, $indent);
         }
-        if ($tag[2]!="") {
-            print "$indent\t$tag[2]";
+        if ($tags[2]!="") {
+            print "$indent\t$tags[2]";
         }
-        print "$indent</$tag[0]>";
-    }
-
-    public function parse() {
-        print_r($this->file_content);
+        print "$indent</$tags[0]>";
     }
 
 }
