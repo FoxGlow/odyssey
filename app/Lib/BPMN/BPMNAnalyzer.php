@@ -10,6 +10,9 @@ class BPMNAnalyzer {
      */
     public $file_content; //needs to be changed to private later
 
+    /**
+     * @var Int
+     */
     public $index; //needs to be changed to private later
 
     /**
@@ -24,12 +27,12 @@ class BPMNAnalyzer {
     }
     
     /**
-     * Finds tag name
+     * Extracts tag's name
      * @return string the tag name
      */
     private function extractTagName() {
         $tag_name = "";
-        while ($this->file_content[$this->index] != ">" && $this->file_content[$this->index] != " ") {
+        while ($this->file_content[$this->index] != ">" && $this->file_content[$this->index] != " " && $this->file_content[$this->index] != "/") {
             $tag_name .= $this->file_content[$this->index];
             $this->index++;
         }
@@ -42,14 +45,60 @@ class BPMNAnalyzer {
     }
 
     /**
+     * Extracts one attribute
+     * @return array An attribute is represented by an array of 2 strings, of the form: [name, value]
+     */
+    private function extractAttribute() {
+        $attribute = array("","");
+        $name = "";
+        $value = "";
+        $equals = false;
+        while ($this->file_content[$this->index] != ">" && $this->file_content[$this->index] != " " && $this->file_content[$this->index] != "/") {
+            if ($this->file_content[$this->index] == "=") {
+                $equals = true;
+                $this->index++;
+            }
+            if ($equals == true) {
+                $value .= $this->file_content[$this->index];
+                $this->index++;
+            }
+            else {
+                $name .= $this->file_content[$this->index];
+                $this->index++;
+            }
+        }
+        if ($this->index < (strlen($this->file_content)-1)) {
+        	while ($this->file_content[$this->index] == ">" || $this->file_content[$this->index] == " ") {
+            	$this->index++;
+            }            
+        }
+        $attribute[0] = $name;
+        $attribute[1] = $value;
+        return $attribute;
+    }
+
+    /**
+     * Extracts tag's text
+     * @return string the text
+     */
+    private function extractText() {
+        $text = "";
+        while ($this->file_content[$this->index] != "<") {
+            $text .= $this->file_content[$this->index];
+            $this->index++;
+        }
+        return $text;
+    }
+
+    /**
      * Processes a tag
-     * @param array $tag A tag is represented by an array of 3 elements, of the form: $tag = array($tag_name, $child_tags, $text)
+     * @param array $tag A tag is represented by an array of 4 elements, of the form:  [tag_name, child_tags, text, attributes]
      * The first element of the array is a string specifying the name of the tag.
      * The second element of the array is the list of tags contained in the tag, also called child tags.
-     * The third element in the array is the text contained in the tag.
+     * The third element in the array is a string specifying the text contained in the tag.
+     * The fourth element in the array is the list of attribute(s)
      */
     private function analyzeTag(array &$tag) {
-        $text = "";
         while ($this->index < strlen($this->file_content)) {
             $c = $this->file_content[$this->index];
             if ($c == "<") { // waiting for new tag or end of current tag's analysis
@@ -60,21 +109,30 @@ class BPMNAnalyzer {
                         exit("Erreur de balise fermante");
                     }
                     else {
-                        $tag[2] = $text;//array_push($tag[2], $text);
                         return;
                     }
                 }
                 else { //start of tag
                     $this->index++;
                     $tag_name = $this->extractTagName();
-                    $child_tag = array($tag_name, array(), "");
+                    $child_tag = array($tag_name, array(), "", array());
                     $this->analyzeTag($child_tag);
-                    array_push($tag[1], $child_tag);//$tag[1] = $child_tag;//
+                    array_push($tag[1], $child_tag);
                 }
             }
-            else {
-                $text .= $c;
-                $this->index++;
+            elseif ($c == "/" && $this->file_content[$this->index + 1] == ">") { //end of self closing tag
+                $this->index += 2;
+                return;
+            }
+            else { //tag's attributes
+                if ($this->file_content[$this->index - 1] == " ") {
+                    $attribute = $this->extractAttribute();
+                    array_push($tag[3], $attribute);
+                } //tag's text
+                elseif ($this->file_content[$this->index - 1] == ">") {
+                    $text = $this->extractText();
+                    $tag[2] = $text;
+                }
             }
         }
     }
@@ -89,7 +147,7 @@ class BPMNAnalyzer {
             if ($c == "<") {
                 $this->index++;
                 $tag_name = $this->extractTagName();
-                $tags = array($tag_name, array(), "");
+                $tags = array($tag_name, array(), "", array());
                 $this->analyzeTag($tags);
             }
             $this->index++;
@@ -98,7 +156,7 @@ class BPMNAnalyzer {
     }
 
     /**
-     * Optional, to be reviewed
+     * Optional, to be reviewed or deleted
      * Shows tree's content
      * @param array $tag
      * @param string $indent
