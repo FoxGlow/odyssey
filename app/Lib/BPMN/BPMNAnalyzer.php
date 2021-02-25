@@ -16,7 +16,7 @@ class BPMNAnalyzer {
     public $index; //needs to be changed to private later
 
     /**
-     * Loads the whole file content in analyzer as a string
+     * Loads the whole file content in analyzer as a string without line breaks and indentation
      * @param string $file_content the .bpmn file content
      * @return self
      */
@@ -62,10 +62,28 @@ class BPMNAnalyzer {
                 $value .= $this->file_content[$this->index];
                 $this->index++;
             }
-            else {
+        }
+    }
+  
+    /*
+     * Finds tag name
+     * @param int $index
+     * @return string the tag name
+     */
+    private function extractTagName(int $index) {
+        $tag_name = "";
+        while ($this->file_content[$index] != ">" && $this->file_content[$index] != " ") {
+            $tag_name .= $this->file_content[$index];
+            $index++;
+        }
+      	if ($index[0] < sizeof($this->file_content)-1) {
+        	while ($this->file_content[$index] == ">" || $this->file_content[$index] == " ") {
+            	$index++;
+          }
+          else {
                 $name .= $this->file_content[$this->index];
                 $this->index++;
-            }
+          }
         }
         if ($this->index < (strlen($this->file_content)-1)) {
         	while ($this->file_content[$this->index] == ">" || $this->file_content[$this->index] == " ") {
@@ -174,5 +192,3 @@ class BPMNAnalyzer {
     }
 
 }
-
-?>

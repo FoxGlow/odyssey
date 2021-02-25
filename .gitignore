@@ -1,6 +1,8 @@
 /vendor/
 /vscode/
-.bpmn
-.xml
-.drawio
-.pdf
+*.bpmn
+*.xml
+*.drawio
+*.pdf
+.env
+test.php

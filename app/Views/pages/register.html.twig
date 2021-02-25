@@ -1,0 +1,26 @@
+{% extends 'template.html.twig' %}
+
+{% block head %}
+    <title>Odyssey >> Inscription</title>
+    <link rel="stylesheet" href="assets/css/form.css">
+{% endblock %}
+
+{% block content %}
+    <div class="form-card">
+        <h1>S'inscrire</h1>
+
+        <form id="register" action="/user/register" method="POST">
+            <label for="mail_address">Adresse mail</label>
+            <input id="mail_address" type="text" name="mail_address">
+            <label for="lastname">Nom</label>
+            <input id="lastname" type="text" name="lastname">
+            <label for="firstname">Prénom</label>
+            <input id="firstname" type="text" name="firstname">
+            <label for="password">Mot de passe</label>
+            <input id="password" type="password" name="password">
+            <label for="password_confirm">Confirmer le mot de passe</label>
+            <input id="password_confirm" type="password" name="password_confirm">
+            <input type="submit" value="Créer">
+        </form>
+    </div>
+{% endblock %}
