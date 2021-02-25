@@ -1,12 +1,12 @@
 <?php
 /**
  * Class to analyze .drawio file content
- * @author 
+ * @author Simon Boutrouille, Amaury Denis, Kamelia Brahimi, Thileli Saci, Zineb Brahimi
  */
 
 class MCFanalyzer {
     /**
-     * @var String
+     * @var string
      */
     public $file_content;
 
@@ -24,24 +24,22 @@ class MCFanalyzer {
         print_r($this->file_content);
     }
 
-/**
- * @return array list of all the flows
- */
-public function analyzeMCF() {
-
-    $elements = explode (" ",$this->file_content); 
-    $values = array();
-    $pattern = 'style="edgeLabel';
-    for ($i=0; $i<count($elements) ; $i++){
-        /*if(preg_match($pattern,$elements[$i]))*/
-        if (str_starts_with($elements[$i],$pattern)){;
-        array_push($values,$elements[$i-1]);
+    /**
+     * @return array list of all the flows
+     */
+    public function analyzeMCF() {
+        $elements = explode(" ", $this->file_content); 
+        $values = array();
+        $pattern = 'style="edgeLabel';
+        for ($i=0; $i<count($elements) ; $i++) {
+            /*if(preg_match($pattern,$elements[$i]))*/
+            if (str_starts_with($elements[$i], $pattern)) {
+            array_push($values,$elements[$i - 1]);
+            }
+            else {
+                echo "this is not a flow" ;
+            }
         }
-        else {
-            echo "this is not a flow" ;
-        }
-        }
-        return $values;
+            return $values;
     }
 }
-?>

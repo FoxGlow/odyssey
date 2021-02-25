@@ -6,12 +6,12 @@
 
 class BPMNAnalyzer {
     /**
-     * @var String
+     * @var string
      */
     public $file_content; //needs to be changed to private later
 
     /**
-     * @var Int
+     * @var int
      */
     public $index; //needs to be changed to private later
 
