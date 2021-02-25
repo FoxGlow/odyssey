@@ -16,7 +16,7 @@ class BPMNAnalyzer {
     public $index; //needs to be changed to private later
 
     /**
-     * Loads the whole file content in analyzer as a string without line breaks and indentation
+     * Loads the whole file content in analyzer as a string
      * @param string $file_content the .bpmn file content
      * @return self
      */
@@ -62,28 +62,10 @@ class BPMNAnalyzer {
                 $value .= $this->file_content[$this->index];
                 $this->index++;
             }
-        }
-    }
-  
-    /*
-     * Finds tag name
-     * @param int $index
-     * @return string the tag name
-     */
-    private function extractTagName(int $index) {
-        $tag_name = "";
-        while ($this->file_content[$index] != ">" && $this->file_content[$index] != " ") {
-            $tag_name .= $this->file_content[$index];
-            $index++;
-        }
-      	if ($index[0] < sizeof($this->file_content)-1) {
-        	while ($this->file_content[$index] == ">" || $this->file_content[$index] == " ") {
-            	$index++;
-          }
-          else {
+            else {
                 $name .= $this->file_content[$this->index];
                 $this->index++;
-          }
+            }
         }
         if ($this->index < (strlen($this->file_content)-1)) {
         	while ($this->file_content[$this->index] == ">" || $this->file_content[$this->index] == " ") {
@@ -110,7 +92,7 @@ class BPMNAnalyzer {
 
     /**
      * Processes a tag
-     * @param array $tag A tag is represented by an array of 4 elements, of the form:  [tag_name, child_tags, text, attributes]
+     * @param array $tag A tag is represented by an array of 4 elements, of the form:  [tag_name, child_tags, text, attributes]
      * The first element of the array is a string specifying the name of the tag.
      * The second element of the array is the list of tags contained in the tag, also called child tags.
      * The third element in the array is a string specifying the text contained in the tag.
