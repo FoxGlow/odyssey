@@ -74,7 +74,7 @@ nav a#selected:hover {
     color: var(--white);
 }
 
-nav div.nav-logo img {
+nav div.nav-logo svg {
     height: 36px;
     width: 36px;
     margin-left: 30px;
@@ -93,7 +93,7 @@ nav div.nav-general a:first-child {
     margin-left: 60px;
 }
 
-nav div.nav-separator img {
+nav div.nav-separator svg {
     transform: rotate(-45deg);
     height: 18px;
     margin: 0 10px 0 10px;

@@ -33,13 +33,12 @@ require_once ROOT . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'auto
  * 
  * Dotenv is used to access easily to the env variables sets in the .env
  * file located at the root. The best way to access these variables for you
- * is to use config() function or Config class (this is why Dotenv is not
- * defined by default in services configuration file).
+ * is the Config class.
  * 
  */
 $dotenv = Dotenv\Dotenv::createUnsafeImmutable(ROOT);
 $dotenv->load();
-$dotenv->required(['APP_DEBUG']);
+$dotenv->required(['APP_DEBUG']); // TO COMPLETE
 
 /**
  * -------------------------------------------------------------------------+
@@ -55,7 +54,59 @@ if (getenv('APP_DEBUG') === "true") {
     $whoops->register();
 }
 
-// To test web pages
-$loader = new \Twig\Loader\FilesystemLoader(ROOT . '/app/Views');
-$twig = new \Twig\Environment($loader, []);
-echo $twig->render('pages/home.html.twig');
+/**
+ * -------------------------------------------------------------------------+
+ * APPLICATION                                                              |
+ * -------------------------------------------------------------------------+
+ * 
+ * Creates application.
+ * 
+ */
+$app = new Core\Application;
+
+/**
+ * -------------------------------------------------------------------------+
+ * ROUTER                                                                   |
+ * -------------------------------------------------------------------------+
+ * 
+ * FastRoute is used to manages routes easily, you can add routes in the 
+ * routes.php configuration file.
+ * 
+ */
+$dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r)
+{
+    require_once ROOT . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'routes.php';
+});
+
+// Fetch method and URI from somewhere
+$http_method = $_SERVER['REQUEST_METHOD'];
+$uri = $_SERVER['REQUEST_URI'];
+
+// Strip query string (?foo=bar) and decode URI
+if (false !== $pos = strpos($uri, '?')) {
+    $uri = substr($uri, 0, $pos);
+}
+$uri = rawurldecode($uri);
+
+// Dispatch and give handle to application
+$route_info = $dispatcher->dispatch($http_method, $uri);
+switch ($route_info[0]) {
+    case FastRoute\Dispatcher::NOT_FOUND:
+        // ... 404 Not Found
+        $app->notFound();
+        break;
+    case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
+        $allowed_methods = $route_info[1];
+        // ... 405 Method Not Allowed
+        $app->methodNotAllowed($allowed_methods);
+        break;
+    case FastRoute\Dispatcher::FOUND:
+        $handler = $route_info[1];
+        if ($http_method == 'POST')
+            $vars = $_POST;
+        else
+            $vars = $route_info[2];
+
+        $app->found($handler, $vars);
+        break;
+}
