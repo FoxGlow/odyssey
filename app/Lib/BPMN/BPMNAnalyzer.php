@@ -22,7 +22,7 @@ class BPMNAnalyzer {
      */
     public function loadFileContent(string $file_content) {
         $this->file_content = $file_content;
-        $this->index = 0;
+        $this->index = 1;
         return $this;
     }
     
@@ -53,9 +53,14 @@ class BPMNAnalyzer {
         $name = "";
         $value = "";
         $equals = false;
-        while ($this->file_content[$this->index] != ">" && $this->file_content[$this->index] != " " && $this->file_content[$this->index] != "/") {
+        $closing = 0;
+        while ($this->file_content[$this->index] != ">" && $closing < 2) {
             if ($this->file_content[$this->index] == "=") {
                 $equals = true;
+                $this->index++;
+            }
+            if ($this->file_content[$this->index] == "\"") {
+                $closing+=1;
                 $this->index++;
             }
             if ($equals == true) {
