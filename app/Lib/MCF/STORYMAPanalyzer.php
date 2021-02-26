@@ -4,7 +4,7 @@
  * @author 
  */
 
-class MCFanalyzer {
+class STORYMAPanalyzer {
     /**
      * @var String
      */
@@ -25,19 +25,19 @@ class MCFanalyzer {
     }
 
 /**
- * @return a list of all the flows
+ * @return a list of all the epics
  */
-public function analyzeMCF() {
+public function analyzeSTORYMAP() {
 
     $elements = explode (" ",$this->file_content); 
     $values = array();
-    $pattern = 'style="edgeLabel';
+    $pattern = 'fillColor=#f8cecc';
     for ($i=0; $i<count($elements) ; $i++){
-        if (str_starts_with($elements[$i],$pattern)){
-        array_push($values,$elements[$i-1]);
+        if (str_contains($elements[$i],$pattern)){
+        array_push($values,$elements[$i-1]);}
         }
-     }
         return $values;
     }
 }
 ?>
+
