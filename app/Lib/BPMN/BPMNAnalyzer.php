@@ -16,6 +16,11 @@ class BPMNAnalyzer {
     public $index; //needs to be changed to private later
 
     /**
+     * @var array
+     */
+    public $result; //needs to be changed to private later
+
+    /**
      * Loads the whole file content in analyzer as a string
      * @param string $file_content the .bpmn file content
      * @return self
@@ -23,6 +28,7 @@ class BPMNAnalyzer {
     public function loadFileContent(string $file_content) {
         $this->file_content = $file_content;
         $this->index = 1;
+        $this->result = array();
         return $this;
     }
     
@@ -78,7 +84,7 @@ class BPMNAnalyzer {
             }            
         }
         $attribute[0] = $name;
-        $attribute[1] = $value;
+        $attribute[1] = rtrim($value, ">");
         return $attribute;
     }
 
@@ -158,6 +164,27 @@ class BPMNAnalyzer {
             $this->index++;
         }
         return $tags;
+    }
+
+    /**
+     * Retrieves tag's text under certain condition (condition to be determined)
+     * @param array $tags result of analyze function
+     */
+    public function iterateThrough($tags) {
+        if ($tags[0] == "bpmn:exemple") {
+            //possible extraction of name attribute
+            /*foreach ($tags[3] as $attribute) {
+                if ($attribute[0] == "name") {
+                    array_push($this->result, $attribute[1]);
+                }
+            }*/
+            if ($tags[2] != "") {
+                array_push($this->result, $tags[2]);
+            }
+        }
+        foreach ($tags[1] as $child) {
+            $this->iterateThrough($child);
+        }
     }
 
     /**
