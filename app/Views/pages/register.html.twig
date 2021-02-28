@@ -2,7 +2,8 @@
 
 {% block head %}
     <title>Odyssey >> Inscription</title>
-    <link rel="stylesheet" href="assets/css/form.css">
+    <link rel="stylesheet" href="{{ css('user.css') }}">
+    <link rel="stylesheet" href="{{ css('form.css') }}">
 {% endblock %}
 
 {% block content %}
@@ -20,7 +21,9 @@
             <input id="password" type="password" name="password">
             <label for="password_confirm">Confirmer le mot de passe</label>
             <input id="password_confirm" type="password" name="password_confirm">
-            <input type="submit" value="Créer">
+            <div class="button-holder">
+                <input class="bg-red-orange" type="submit" value="Créer">
+            </div>
         </form>
     </div>
 {% endblock %}

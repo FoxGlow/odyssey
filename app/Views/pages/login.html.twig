@@ -2,21 +2,22 @@
 
 {% block head %}
     <title>Odyssey >> Connexion</title>
+    <link rel="stylesheet" href="{{ css('user.css') }}">
     <link rel="stylesheet" href="{{ css('form.css') }}">
 {% endblock %}
 
 {% block content %}
-    {{ svg('login/wave.svg') }}
-
     <div class="form-card">
         <h1>Se connecter</h1>
 
         <form id="login" action="/user/login" method="POST">
-            <label for="email">Adresse mail</label>
-            <input id="email" type="text" name="email">
-            <label for="password">Mot de passe</label>
-            <input id="password" type="password" name="password">
-            <input type="submit" value="Connexion">
+            <label for="email">Adresse mail</label><br/>
+            <input id="email" type="text" name="email"><br/>
+            <label for="password">Mot de passe</label><br/>
+            <input id="password" type="password" name="password"><br/>
+            <div class="button-holder">
+                <input class="bg-blue" type="submit" value="Connexion">
+            </div>
         </form>
     </div>
 {% endblock %}
