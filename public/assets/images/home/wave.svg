@@ -1,4 +1,4 @@
-<svg width="1440" height="465" viewBox="0 0 1440 465" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg id="wave" viewBox="0 0 1440 465" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path fill-rule="evenodd" clip-rule="evenodd" d="M0 348.75L60 358.438C120 368.125 315.5 397.188 435.5 348.75C555.5 300.312 633.5 230.938 753.5 182.5C873.5 134.062 974.5 141.188 1094.5 131.5C1214.5 121.812 1320 38.75 1380 19.375L1440 0V465H1380C1320 465 1200 465 1080 465C960 465 840 465 720 465C600 465 480 465 360 465C240 465 120 465 60 465H0V348.75Z" fill="url(#paint0_linear)"/>
     <defs>
     <linearGradient id="paint0_linear" x1="720" y1="0" x2="720" y2="465" gradientUnits="userSpaceOnUse">
