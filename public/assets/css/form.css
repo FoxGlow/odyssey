@@ -1,0 +1,74 @@
+/* FORM */
+
+div.form-card {
+    background-color: var(--white);
+    color: var(--black);
+    border-radius: 8px;
+    border: 1px solid var(--light-gray);
+    width: 475px;
+    padding: 45px 20px 45px 20px;
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+}
+
+div.form-card h1 {
+    text-align: center;
+}
+
+div.form-card form {
+    width: 100%;
+}
+
+div.form-card form label {
+    margin-left: 17.5%;
+    font-size: 16px;
+    font-weight: 300;
+}
+
+div.form-card form input[type="text"], div.form-card form input[type="password"] {
+    margin: 10px 0 15px 17.5%;
+    width: 62%;
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    height: 25px;
+    font-size: 14px;
+    font-weight: 200;
+    padding: 0 1.5% 0 1.5%;
+}
+
+div.form-card form div.button-holder {
+    margin-top: 15px;
+    text-align: center;
+}
+
+div.form-card form input[type="submit"] {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 200;
+    border: none;
+    border-radius: 25px;
+    padding: 7px 25px 7px 25px;
+    margin: auto;
+}
+
+/* OTHER */
+
+.bg-blue {
+    background-color: var(--blue);
+}
+
+.bg-blue:hover {
+    background-color: var(--light-blue);
+}
+
+.bg-red-orange {
+    background-color: var(--red-orange);
+}
+
+.bg-red-orange:hover {
+    background-color: var(--light-red-orange);
+}
