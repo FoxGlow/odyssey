@@ -2,11 +2,11 @@
 
 {% block head %}
     <title>Odyssey >> Accueil</title>
-    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="{{ css('home.css') }}">
 {% endblock %}
 
 {% block content %}
-    <img id="home-wave" src="assets/images/home/wave.svg" alt="wave" />
+    {{ svg('home/wave.svg') }}
 
     <div class="container">
         <div class="free-text">
@@ -18,23 +18,23 @@
             <h1>Vous pouvez...</h1>
 
             <div class="home-card-item">
-                <img src="assets/images/home/chat.svg" alt="chat" />
+                {{ svg('home/chat.svg') }}
                 <p>Collaborer à plusieurs sur vos projets</p>
             </div>
             <div class="home-card-item">
-                <img src="assets/images/home/bell.svg" alt="bell" />
+                {{ svg('home/bell.svg') }}
                 <p>Obtenir des conseils dans votre analyse</p>
             </div>
             <div class="home-card-item">
-                <img src="assets/images/home/inbox.svg" alt="inbox" />
+                {{ svg('home/inbox.svg') }}
                 <p>Vérifier la cohérence entre votre story map et votre BPMN</p>
             </div>
             <div class="home-card-item">
-                <img src="assets/images/home/placeholder.svg" alt="placeholder" />
+                {{ svg('home/placeholder.svg') }}
                 <p>Vérifier la présence de vos flux MCF dans votre BPMN</p>
             </div>
             <div class="home-card-item">
-                <img src="assets/images/home/calculator.svg" alt="calculator" />
+                {{ svg('home/calculator.svg') }}
                 <p>Calculer le taux de couverture de vos projets</p>
             </div>
 
