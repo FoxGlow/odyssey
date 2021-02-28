@@ -2,10 +2,12 @@
 
 {% block head %}
     <title>Odyssey >> Connexion</title>
-    <link rel="stylesheet" href="assets/css/form.css">
+    <link rel="stylesheet" href="{{ css('form.css') }}">
 {% endblock %}
 
 {% block content %}
+    {{ svg('login/wave.svg') }}
+
     <div class="form-card">
         <h1>Se connecter</h1>
 
