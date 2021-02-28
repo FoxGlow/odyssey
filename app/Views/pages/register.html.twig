@@ -9,7 +9,7 @@
 {% block content %}
     <div class="form-card">
         <h1>S'inscrire</h1>
-
+        {{ formError(error) }}
         <form id="register" action="/user/register" method="POST">
             <label for="mail_address">Adresse mail</label>
             <input id="mail_address" type="text" name="mail_address">

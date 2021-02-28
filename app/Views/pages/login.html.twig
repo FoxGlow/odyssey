@@ -9,10 +9,10 @@
 {% block content %}
     <div class="form-card">
         <h1>Se connecter</h1>
-
+        {{ formError(error) }}
         <form id="login" action="/user/login" method="POST">
-            <label for="email">Adresse mail</label><br/>
-            <input id="email" type="text" name="email"><br/>
+            <label for="mail_address">Adresse mail</label><br/>
+            <input id="mail_address" type="text" name="mail_address"><br/>
             <label for="password">Mot de passe</label><br/>
             <input id="password" type="password" name="password"><br/>
             <div class="button-holder">
