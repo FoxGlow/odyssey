@@ -31,6 +31,9 @@ div.container div.home-card {
     width: 475px;
     padding: 45px 20px 65px 20px;
     margin-top: 15vh;
+    box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
 }
 
 div.container div.home-card h1 {
@@ -60,8 +63,12 @@ div.container div.home-card div.home-card-link {
 div.container div.home-card div.home-card-link a {
     background-color: var(--red-orange);
     color: var(--white);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 200;
     border-radius: 25px;
     padding: 7px 25px 7px 25px;
+}
+
+div.container div.home-card div.home-card-link a:hover {
+    background-color: var(--light-red-orange);
 }
