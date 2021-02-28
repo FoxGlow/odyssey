@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class to analyze .drawio file content
+ * Class to analyze .drawio file content (Story-map)
  * @author Simon Boutrouille, Amaury Denis, Kamelia Brahimi, Thileli Saci, Zineb Brahimi
  */
 
