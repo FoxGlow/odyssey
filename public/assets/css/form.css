@@ -8,6 +8,7 @@ div.form-card {
     width: 475px;
     padding: 45px 20px 45px 20px;
     margin-top: 10vh;
+    margin-bottom: 10vh;
     margin-left: auto;
     margin-right: auto;
     box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
@@ -19,8 +20,19 @@ div.form-card h1 {
     text-align: center;
 }
 
+span.error {
+    background-color: var(--red);
+    padding: 5px;
+    border-radius: 8px;
+    font-size: 14px;
+    border: 1px solid var(--dark-red);
+    margin-left: 17.5%;
+    width: 65%;
+}
+
 div.form-card form {
     width: 100%;
+    margin-top: 20px;
 }
 
 div.form-card form label {
