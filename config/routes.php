@@ -20,6 +20,8 @@ $r->addGroup('/user', function (FastRoute\RouteCollector $r) {
 
     $r->get('/register', 'user#register');
     $r->post('/register', 'user#create');
+
+    $r->get('/logout', 'user#logout');
 });
 
 // Project pages
