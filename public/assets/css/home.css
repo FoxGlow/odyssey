@@ -65,13 +65,3 @@ div.container div.home-card div.home-card-link a {
     border-radius: 25px;
     padding: 7px 25px 7px 25px;
 }
-
-/* HOME WAVE */
-
-img#home-wave {
-    position: fixed;
-    z-index: -1;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-}

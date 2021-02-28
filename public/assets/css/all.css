@@ -110,6 +110,16 @@ nav div.nav-user div.nav-right {
     margin-right: 30px;
 }
 
+/* WAVE */
+
+svg#wave {
+    position: fixed;
+    z-index: -1;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+}
+
 /* OTHER */
 
 span.strong {
