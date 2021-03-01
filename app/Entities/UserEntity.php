@@ -1,4 +1,9 @@
 <?php
+/**
+ * User entity
+ * 
+ * @author Hugolin Mariette
+ */
 
 namespace App\Entities;
 
