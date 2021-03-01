@@ -21,4 +21,18 @@ class AppController extends BaseController {
         echo $this->container->get('twig')->render('405.html.twig');
     }
 
+    protected function bigBrother() : bool {
+        if (isset($_SESSION['userId']))
+            return true;
+        return false;
+    }
+
+    protected function sessionSet(string $key, $value) : void {
+        $_SESSION[$key] = $value;
+    }
+
+    protected function sessionGet(string $key) : mixed {
+        return $_SESSION[$key];
+    }
+
 }
