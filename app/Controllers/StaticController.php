@@ -7,9 +7,7 @@
 
 namespace App\Controllers;
 
-use Core\Controller\BaseController;
-
-class StaticController extends BaseController {
+class StaticController extends AppController {
 
     public function home() {
         echo $this->container->get('twig')->render('/pages/home.html.twig');

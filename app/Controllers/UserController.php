@@ -8,9 +8,8 @@
 namespace App\Controllers;
 
 use App\Entities\UserEntity;
-use Core\Controller\BaseController;
 
-class UserController extends BaseController {
+class UserController extends AppController {
 
     public function login() {
         echo $this->container->get('twig')->render('/pages/login.html.twig');
