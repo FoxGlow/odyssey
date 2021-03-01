@@ -65,19 +65,19 @@ nav div.nav-empty {
 nav a {
     color: var(--white);
     font-size: 15px;
+    padding: 4px 15px 4px 15px;
 }
 
 nav a:hover {
     color: var(--green);
 }
 
-nav a#selected {
+nav a.selected {
     background-color: var(--green);
     border-radius: 15px;
-    padding: 4px 15px 4px 15px;
 }
 
-nav a#selected:hover {
+nav a.selected:hover {
     color: var(--white);
 }
 
@@ -90,10 +90,6 @@ nav div.nav-logo svg {
 nav div.nav-title span {
     font-size: 24px;
     margin-left: 10px;
-}
-
-nav div.nav-general a, nav div.nav-user a {
-    margin: 0 12px 0 12px;
 }
 
 nav div.nav-general a:first-child {
