@@ -1,0 +1,23 @@
+/* GENERAL */
+
+body {
+    background: rgb(191,79,79);
+    background: -moz-linear-gradient(11deg, rgba(191,79,79,1) 0%, rgba(47,128,237,1) 100%);
+    background: -webkit-linear-gradient(11deg, rgba(191,79,79,1) 0%, rgba(47,128,237,1) 100%);
+    background: linear-gradient(11deg, rgba(191,79,79,1) 0%, rgba(47,128,237,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#bf4f4f",endColorstr="#2f80ed",GradientType=1); 
+}
+
+/* CREDITS */
+
+div#credits {
+    background-color: var(--white);
+    margin: 10vh 25% 10vh 25%;
+    padding: 50px;
+    color: var(--black);
+    border-radius: 8px;
+    border: 1px solid var(--light-gray);
+    box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+}

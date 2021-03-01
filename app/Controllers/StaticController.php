@@ -18,7 +18,7 @@ class StaticController extends AppController {
     }
 
     public function credits() {
-        // TODO
+        echo $this->container->get('twig')->render('/pages/credits.html.twig');
     }
 
 }
