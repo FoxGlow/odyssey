@@ -1,0 +1,15 @@
+{% extends 'template.html.twig' %}
+
+{% block head %}
+    <title>Inscription réussie - Odyssey</title>
+    <link rel="stylesheet" href="{{ css('user.css') }}">
+    <link rel="stylesheet" href="{{ css('success.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-success">
+        <h1>Félicitations !</h1>
+        <p>Votre compte a été crée avec succès vous pouvez y accèder en vous connectant avec votre adresse mail et votre mot de passe.</p>
+        <a class="button blue-bg" href="/user/login">Se connecter</a>
+    </div>
+{% endblock %}
