@@ -39,9 +39,9 @@ return [
         'views_dir' => ROOT . '/app/Views',
         'controllers_dir' => ROOT . '/app/Controllers',
         'entities_dir' => ROOT . '/app/Entities',
-        'tmp_dir' => ROOT . '/tmp',
         'css' => '/assets/css',
-        'images' => '/assets/images'
+        'images' => '/assets/images',
+        'js' => '/assets/js'
     ],
 
 
