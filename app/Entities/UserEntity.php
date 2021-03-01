@@ -12,7 +12,7 @@ use Core\Entity\BaseEntity;
 class UserEntity extends BaseEntity {
 
     public function login(string $mail_address, string $password) {
-        $request = 'SELECT *
+        $request = 'SELECT id_utilisateur, prenom, mot_de_passe
             FROM utilisateur
             WHERE mail = :mail_address';
         $stmt = $this->db_connection::getInstance()->prepare($request);
@@ -20,7 +20,7 @@ class UserEntity extends BaseEntity {
         $stmt->execute();
         $res = $stmt->fetch();
         if (!$res) return null;
-        if (!password_verify($password, $res['password'])) return null;
+        if (!password_verify($password, $res['mot_de_passe'])) return null;
         return $res;
     }
 
