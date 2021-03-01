@@ -12,6 +12,7 @@ class AppExtension extends AbstractExtension {
     {
         return [
             new TwigFunction('css', [$this, 'css']),
+            new TwigFunction('js', [$this, 'js']),
             new TwigFunction('svg', [$this, 'svg']),
             new TwigFunction('formError', [$this, 'formError'])
         ];
@@ -19,6 +20,10 @@ class AppExtension extends AbstractExtension {
 
     public function css(string $css_file) {
         return Config::get('paths.css') . DIRECTORY_SEPARATOR . $css_file;
+    }
+
+    public function js(string $js_file) {
+        return Config::get('paths.js') . DIRECTORY_SEPARATOR . $js_file;
     }
 
     public function svg(string $svg_file) {
