@@ -59,16 +59,3 @@ div.container div.home-card div.home-card-link {
     margin-top: 30px;
     text-align: center;
 }
-
-div.container div.home-card div.home-card-link a {
-    background-color: var(--red-orange);
-    color: var(--white);
-    font-size: 16px;
-    font-weight: 200;
-    border-radius: 25px;
-    padding: 7px 25px 7px 25px;
-}
-
-div.container div.home-card div.home-card-link a:hover {
-    background-color: var(--light-red-orange);
-}

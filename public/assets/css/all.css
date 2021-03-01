@@ -123,9 +123,35 @@ svg#wave {
     width: 100vw;
 }
 
+/* LINK BUTTONS */
+
+a.button {
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 200;
+    border-radius: 25px;
+    padding: 7px 25px 7px 25px;
+}
+
+a.red-orange-bg {
+    background-color: var(--red-orange);
+}
+
+a.red-orange-bg:hover {
+    background-color: var(--light-red-orange);
+}
+
+a.blue-bg {
+    background-color: var(--blue);
+}
+
+a.blue-bg:hover {
+    background-color: var(--light-blue);
+}
+
 /* OTHER */
 
-div.page-error {
+div.page-error, div.page-success {
     text-align: center;
     margin-top: 10vh;
 }
