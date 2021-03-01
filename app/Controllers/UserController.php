@@ -1,6 +1,6 @@
 <?php
 /**
- * Controller for user pages/action
+ * Controller for user pages/actions
  * 
  * @author Hugolin Mariette
  */
@@ -28,7 +28,9 @@ class UserController extends AppController {
             $res = $user_entity->login($mail_address, $password);
             // Mail address and password are correct
             if (!is_null($res)) {
-                // TODO
+                $this->sessionSet('userId', $res['id_utilisateur']);
+                $this->sessionSet('firstname', $res['prenom']);
+                echo $this->container->get('twig')->render('/pages/home.html.twig'); // TO CHANGE
             }
             // Incorrect mail address and/or password
             else {
@@ -40,25 +42,25 @@ class UserController extends AppController {
     }
 
     public function register() {
-        echo $this->container->get('twig')->render('/pages/register.html.twig');
+        echo $this->container->get('twig')->render('/pages/register/register.html.twig');
     }
 
     public function create(string $mail_address, string $firstname, string $lastname, string $password, string $password_confirm) {
         // Invalid mail address
         if (!filter_var($mail_address, FILTER_VALIDATE_EMAIL)) {
-            echo $this->container->get('twig')->render('/pages/register.html.twig', [
+            echo $this->container->get('twig')->render('/pages/register/register.html.twig', [
                 'error' => "L'adresse mail est invalide."
             ]);
         }
         // At least one field is empty
         elseif (strlen($mail_address) == 0 || strlen($firstname) == 0 || strlen($lastname) == 0 || strlen($password) == 0 || strlen($password_confirm) == 0) {
-            echo $this->container->get('twig')->render('/pages/register.html.twig', [
+            echo $this->container->get('twig')->render('/pages/register/register.html.twig', [
                 'error' => "Au moins l'un des champs est vide."
             ]);
         }
         // The password and it's confirmation are not the same
         elseif ($password !== $password_confirm) {
-            echo $this->container->get('twig')->render('/pages/register.html.twig', [
+            echo $this->container->get('twig')->render('/pages/register/register.html.twig', [
                 'error' => "L'un des mots de passe ne correspond pas."
             ]);
         }
@@ -66,7 +68,7 @@ class UserController extends AppController {
         else {
             $user_entity = new UserEntity;
             $res = $user_entity->register($firstname, $lastname, $mail_address, $password);
-            // TODO
+            echo $this->container->get('twig')->render('/pages/register/success.html.twig');
         }
     }
 
