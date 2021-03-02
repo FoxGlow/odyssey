@@ -8,6 +8,9 @@
         <link rel="icon" href="/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" href="{{ css('all.css') }}">
         <script src="{{ js('nav-lighter.js') }}"></script>
+        {% if not userId is null %}
+            <script src="{{ js('nav-user-card.js') }}"></script>
+        {% endif %}
         {% block head %}{% endblock %}
     </head>
     <body>
