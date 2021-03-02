@@ -30,6 +30,8 @@ return [
         $twig = new \Twig\Environment($c->get('twigloader'), []);
         $twig->addExtension(new \App\Twig\AppExtension);
         $twig->addGlobal('userId', $_SESSION['userId']);
+        $twig->addGlobal('mail', $_SESSION['mail']);
+        $twig->addGlobal('lastname', $_SESSION['lastname']);
         $twig->addGlobal('firstname', $_SESSION['firstname']);
         return $twig;
     }
