@@ -39,6 +39,11 @@ class AppController extends BaseController {
             $this->redirect($pathname);
     }
 
+    protected function redirectIfUserNotAuth(string $pathname) : void {
+        if (!$this->isUserAuth())
+            $this->redirect($pathname);
+    }
+
     protected function sessionSet(string $key, $value) : void {
         $_SESSION[$key] = $value;
     }
