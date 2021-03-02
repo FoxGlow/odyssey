@@ -11,20 +11,32 @@ use Core\Controller\BaseController;
 
 class AppController extends BaseController {
 
-    public function notFound() {
+    public function notFound() : void {
         header("HTTP/1.0 404 Not Found");
         echo $this->container->get('twig')->render('404.html.twig');
+        exit();
     }
 
-    public function methodNotAllowed() {
+    public function methodNotAllowed() : void {
         header($_SERVER["SERVER_PROTOCOL"] . " 405 Method Not Allowed", true, 405);
         echo $this->container->get('twig')->render('405.html.twig');
+        exit();
     }
 
-    protected function bigBrother() : bool {
+    protected function redirect(string $pathname) : void {
+        header('Location: ' . $pathname);
+        exit();
+    }
+
+    protected function isUserAuth() : bool {
         if (isset($_SESSION['userId']))
             return true;
         return false;
+    }
+
+    protected function redirectIfUserAuth(string $pathname) : void {
+        if ($this->isUserAuth())
+            $this->redirect($pathname);
     }
 
     protected function sessionSet(string $key, $value) : void {
