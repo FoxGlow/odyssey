@@ -32,6 +32,8 @@ class UserController extends AppController {
             // Mail address and password are correct
             if (!is_null($res)) {
                 $this->sessionSet('userId', $res['id_utilisateur']);
+                $this->sessionSet('mail', $res['mail']);
+                $this->sessionSet('lastname', $res['nom']);
                 $this->sessionSet('firstname', $res['prenom']);
                 $this->redirect('/'); // TO CHANGE
             }
