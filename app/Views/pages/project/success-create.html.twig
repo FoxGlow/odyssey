@@ -1,0 +1,15 @@
+{% extends 'template.html.twig' %}
+
+{% block head %}
+    <title>Inscription réussie - Odyssey</title>
+    <link rel="stylesheet" href="{{ css('user.css') }}">
+    <link rel="stylesheet" href="{{ css('success.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="page-success">
+        <h1>Félicitations !</h1>
+        <p>Le projet a bien été crée, cliquez sur le lien ci-dessous pour y accéder.</p>
+        <a class="button blue-bg" href="">Aller au projet</a>
+    </div>
+{% endblock %}
