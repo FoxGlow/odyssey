@@ -1,4 +1,4 @@
-const main = () => {
+const navLighter = () => {
     const full_path_name = window.location.pathname;
     const splited_path_name = full_path_name.split('/');
     splited_path_name.shift();
@@ -36,4 +36,4 @@ const main = () => {
     }
 }
 
-window.addEventListener("load", main);
+window.addEventListener("load", navLighter);
