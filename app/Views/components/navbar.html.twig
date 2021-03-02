@@ -36,8 +36,17 @@
 
         {% if not userId is null %}
             <div class="nav-user-authenticated-name nav-right">
-                <span class="nav-user-name">Bonjour <strong>{{ firstname }}</strong></span>
+                <span id="nav-greeting">Bonjour <strong>{{ firstname }}</strong></span>
             </div>
         {% endif %}
     </div>
 </nav>
+
+<div id="nav-user-card" class="hidden">
+    <h1>Votre compte</h1>
+
+    <span id="nav-user-mail">{{ mail }}</span><br/>
+    <span id="nav-user-name">{{ lastname }} {{ firstname }}</span><br/><br/>
+
+    <a href="/user/logout">Se déconnecter</a>
+</div>
