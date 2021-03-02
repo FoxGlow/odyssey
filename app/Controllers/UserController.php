@@ -12,10 +12,13 @@ use App\Entities\UserEntity;
 class UserController extends AppController {
 
     public function login() {
+        $this->redirectIfUserAuth('/');
         echo $this->container->get('twig')->render('/pages/login.html.twig');
     }
 
     public function authenticate(string $mail_address, string $password) {
+        $this->redirectIfUserAuth('/');
+
         // At least one field is empty
         if (strlen($mail_address) == 0 || strlen($password) == 0) { 
             echo $this->container->get('twig')->render('/pages/login.html.twig', [
@@ -30,7 +33,7 @@ class UserController extends AppController {
             if (!is_null($res)) {
                 $this->sessionSet('userId', $res['id_utilisateur']);
                 $this->sessionSet('firstname', $res['prenom']);
-                echo $this->container->get('twig')->render('/pages/home.html.twig'); // TO CHANGE
+                $this->redirect('/'); // TO CHANGE
             }
             // Incorrect mail address and/or password
             else {
@@ -42,10 +45,13 @@ class UserController extends AppController {
     }
 
     public function register() {
+        $this->redirectIfUserAuth('/');
         echo $this->container->get('twig')->render('/pages/register/register.html.twig');
     }
 
     public function create(string $mail_address, string $firstname, string $lastname, string $password, string $password_confirm) {
+        $this->redirectIfUserAuth('/');
+
         // Invalid mail address
         if (!filter_var($mail_address, FILTER_VALIDATE_EMAIL)) {
             echo $this->container->get('twig')->render('/pages/register/register.html.twig', [
@@ -70,6 +76,10 @@ class UserController extends AppController {
             $res = $user_entity->register($firstname, $lastname, $mail_address, $password);
             echo $this->container->get('twig')->render('/pages/register/success.html.twig');
         }
+    }
+
+    public function logout() {
+        // TODO
     }
 
 }
