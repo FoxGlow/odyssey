@@ -48,7 +48,7 @@ class AppController extends BaseController {
         $_SESSION[$key] = $value;
     }
 
-    protected function sessionGet(string $key) : mixed {
+    protected function sessionGet(string $key) {
         return $_SESSION[$key];
     }
 
