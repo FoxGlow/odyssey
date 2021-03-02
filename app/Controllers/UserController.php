@@ -79,7 +79,9 @@ class UserController extends AppController {
     }
 
     public function logout() {
-        // TODO
+        $this->redirectIfUserNotAuth('/user/login');
+        session_destroy();
+        $this->redirect('/');
     }
 
 }
