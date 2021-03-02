@@ -12,7 +12,7 @@ use Core\Entity\BaseEntity;
 class UserEntity extends BaseEntity {
 
     public function login(string $mail_address, string $password) {
-        $request = 'SELECT id_utilisateur, prenom, mot_de_passe
+        $request = 'SELECT *
             FROM utilisateur
             WHERE mail = :mail_address';
         $stmt = $this->db_connection::getInstance()->prepare($request);
