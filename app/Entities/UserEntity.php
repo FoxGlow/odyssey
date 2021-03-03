@@ -2,7 +2,7 @@
 /**
  * User entity
  * 
- * @author Hugolin Mariette
+ * @author Hugolin Mariette, Abdelnor Ait Ali, Yuxuan Sun
  */
 
 namespace App\Entities;
