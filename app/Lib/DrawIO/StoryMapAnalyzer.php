@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class to analyze .drawio file content (Story-map)
+ * Class to analyze .drawio file content (story-map)
  * @author Simon Boutrouille, Amaury Denis, Kamelia Brahimi, Thileli Saci, Zineb Brahimi
  */
 
@@ -23,25 +23,38 @@ class StoryMapAnalyzer
         return $this;
     }
 
-    public function parse()
-    {
-        print_r($this->file_content);
-    }
-
     /**
-     * @return a list of all the epics
+     * Starts analysis of story-map loaded file
+     * @return array a list of all the epics
      */
-    public function analyzeSTORYMAP()
+    public function analyze()
     {
 
         $elements = explode(" ", $this->file_content);
         $values = array();
+        $epics = array();
+        $str = "";
         $pattern = 'fillColor=#f8cecc';
+        $pattern2 = 'value="';
         for ($i = 0; $i < count($elements); $i++) {
+            // Check if the element starts with 'value="' and extract its index
+            if (str_starts_with($elements[$i], $pattern2)) {
+                $index = $i;
+            }
+            // Check if the element contains with 'fillColor=#f8cecc', extract all the elements between 'value' and the element containing 'fillColor' and put them in a list of sub-lists
             if (str_contains($elements[$i], $pattern)) {
-                array_push($values, $elements[$i - 1]);
+                $words = array_slice($elements, $index, $i - $index, false);
+                array_push($values, $words);
             }
         }
-        return $values;
+        // Concatenate the elements of each sub-list and put them in a final list of flows
+        foreach ($values as $value) {
+            $str = $value[0];
+            for ($j = 1; $j < count($value); $j++) {
+                $str = $str . " " . $value[$j];
+            }
+            array_push($epics, $str);
+        }
+        return $epics;
     }
 }
