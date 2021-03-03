@@ -2,7 +2,7 @@
 /**
  * Project entity
  * 
- * @author Hugolin Mariette
+ * @author Hugolin Mariette, Abdelnor Ait Ali, Yuxuan Sun
  */
 
 namespace App\Entities;
@@ -24,13 +24,8 @@ class ProjectEntity extends BaseEntity {
 
     public function list(int $userId) {
         $request = 'SELECT projet.id_projet, projet.nom, projet.description, projet.ref_chef,
-            utilisateur.id_utilisateur, utilisateur.nom, utilisateur.prenom, utilisateur.mail,
-            COUNT(associe.ref_utilisateur) AS nb_collaborateur,
-            (CASE WHEN id_bpmn IS NULL THEN \'0\' ELSE id_bpmn END) AS bpmn,
-            (CASE WHEN id_cvo IS NULL THEN \'0\' ELSE id_cvo END) AS cvo,
-            (CASE WHEN id_mcd IS NULL THEN \'0\' ELSE id_mcd END) AS mcd,
-            (CASE WHEN id_story_map IS NULL THEN \'0\' ELSE id_story_map END) AS story_map,
-            (CASE WHEN id_mcf IS NULL THEN \'0\' ELSE id_mcf END) AS mcf
+            utilisateur.id_utilisateur, COUNT(associe.ref_utilisateur) AS nb_collaborateur,
+            bpmn.id_bpmn, story_map.id_story_map, mcd.id_mcd, cvo.id_cvo, mcf.id_mcf
             FROM PROJET
             LEFT JOIN utilisateur ON utilisateur.id_utilisateur = projet.ref_chef
             LEFT JOIN associe ON associe.ref_projet = projet.id_projet
@@ -39,13 +34,16 @@ class ProjectEntity extends BaseEntity {
             LEFT JOIN mcd ON mcd.ref_projet = projet.id_projet
             LEFT JOIN cvo ON cvo.ref_projet = projet.id_projet
             LEFT JOIN mcf ON mcf.ref_projet = projet.id_projet
-            GROUP BY id_projet';
-            $stmt = $this->db_connection::getInstance()->prepare($request);
-            $stmt->bindValue(':userId', $userId);
-            $stmt->execute();
-            $res = $stmt->fetchAll();
-            if (!$res) return null;
-            return $res;
+            WHERE associe.ref_utilisateur = :userId
+            GROUP BY projet.id_projet, projet.nom, projet.description, projet.ref_chef,
+            utilisateur.id_utilisateur, bpmn.id_bpmn, story_map.id_story_map, mcd.id_mcd,
+            cvo.id_cvo, mcf.id_mcf';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':userId', $userId);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        if (!$res) return null;
+        return $res;
     }
 
 }
