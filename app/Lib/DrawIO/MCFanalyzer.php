@@ -5,7 +5,7 @@
  * @author Simon Boutrouille, Amaury Denis, Kamelia Brahimi, Thileli Saci, Zineb Brahimi
  */
 
-class MCFanalyzer
+class MCFAnalyzer
 {
     /**
      * @var String
@@ -23,24 +23,38 @@ class MCFanalyzer
         return $this;
     }
 
-    public function parse()
-    {
-        print_r($this->file_content);
-    }
-
     /**
+     * Starts analysis of MCF loaded file
      * @return array a list of all the flows
      */
-    public function analyzeMCF()
+    public function analyze()
     {
         $elements = explode(" ", $this->file_content);
+        $flow = "";
         $values = array();
+        $flows = array();
         $pattern = 'style="edgeLabel';
+        $pattern2 = 'value="';
+
         for ($i = 0; $i < count($elements); $i++) {
+            // Check if the element starts with 'value="' and extract its index
+            if (str_starts_with($elements[$i], $pattern2)) {
+                $index = $i;
+            }
+            // Check if the element starts with 'style="edgeLabel"', extract all the elements between 'value' and 'style' and put them in a list of sub-lists
             if (str_starts_with($elements[$i], $pattern)) {
-                array_push($values, $elements[$i - 1]);
+                $words = array_slice($elements, $index, $i - $index, false);
+                array_push($values, $words);
             }
         }
-        return $values;
+        // Concatenate the elements of each sub-list and put them in a final list of flows 
+        foreach ($values as $value) {
+            $flow = $value[0];
+            for ($j = 1; $j < count($value); $j++) {
+                $flow = $flow . " " . $value[$j];
+            }
+            array_push($flows, $flow);
+        }
+        return $flows;
     }
 }
