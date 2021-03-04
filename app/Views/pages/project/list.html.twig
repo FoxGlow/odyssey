@@ -1,0 +1,55 @@
+{% extends "template.html.twig" %}
+
+{% block head %}
+    <title>Mes projets - Odyssey</title>
+    <link rel="stylesheet" href="{{ css('list.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="page">
+        <h1>Liste de vos projets</h1>
+
+        <div class="list">
+            {% for project in projects %}
+                <a href="/project/view/{{ project.id_projet }}">
+                    <div class="list-item">
+                        <div class="list-item-header">
+                            <span class="title">{{ project.nom }}</span>
+                            <span class="collab"> ({{ project.nb_collaborateurs }} collab.)</span>
+                            {% if project.ref_chef == userId %}
+                                {{ svg('project/owner.svg') }}
+                            {% endif %}
+                        </div>
+                        <span class="description">{{ project.description }}</span>
+                        <div class="axes">
+                            <div class="axe">
+                                <div class="circle {% if project.id_mcf is null %}red{% else %}green{% endif %}"></div>
+                                <span class="axe-name">MCF</span>
+                            </div>
+
+                            <div class="axe">
+                                <div class="circle {% if project.id_bpmn is null %}red{% else %}green{% endif %}"></div>
+                                <span class="axe-name">BPMN</span>
+                            </div>
+
+                            <div class="axe">
+                                <div class="circle {% if project.id_mcd is null %}red{% else %}green{% endif %}"></div>
+                                <span class="axe-name">MCD</span>
+                            </div>
+
+                            <div class="axe">
+                                <div class="circle {% if project.id_cvo is null %}red{% else %}green{% endif %}"></div>
+                                <span class="axe-name">CVO</span>
+                            </div>
+
+                            <div class="axe">
+                                <div class="circle {% if project.id_story_map is null %}red{% else %}green{% endif %}"></div>
+                                <span class="axe-name">Story-map</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
