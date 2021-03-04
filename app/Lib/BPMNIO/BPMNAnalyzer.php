@@ -180,7 +180,7 @@ class BPMNAnalyzer {
      * Starts analysis of source code and detects first opening tag
      * @return array list of tags
      */
-    public function analyze() {
+    private function analyze() {
         while ($this->index < strlen($this->file_content)) {
             $c = $this->file_content[$this->index];
             if ($c == "<") {
@@ -198,12 +198,12 @@ class BPMNAnalyzer {
      * Retrieves tag's activity or flow name
      * @param array $tags result of analyze function
      */
-    public function iterateThrough($tags) {
+    private function iterateThrough($tags) {
         $tasks = array("bpmn:task", "bpmn:sendTask", "bpmn:receiveTask", "bpmn:userTask", "bpmn:manualTask", "bpmn:businessRuleTask", "bpmn:serviceTask", "bpmn:scriptTask", "bpmn:callActivity", "bpmn:subProcess");
         if (in_array($tags[0], $tasks)) {
             foreach ($tags[3] as $attribute) {
                 if ($attribute[0] == "name") {
-                    array_push($this->result["Activités"], $attribute[1]);
+                    array_push($this->result["activities"], $attribute[1]);
                 }
             }
         }
@@ -211,7 +211,7 @@ class BPMNAnalyzer {
         if ($tags[0] == "bpmn:messageFlow") {
             foreach ($tags[3] as $attribute) {
                 if ($attribute[0] == "name") {
-                    array_push($this->result["Flux"], $attribute[1]);
+                    array_push($this->result["flows"], $attribute[1]);
                 }
             }
         }
@@ -219,6 +219,22 @@ class BPMNAnalyzer {
         foreach ($tags[1] as $child) {
             $this->iterateThrough($child);
         }
+    }
+
+    /**
+     * Gets the flows
+     * @return array the list of flows
+     */
+    public function getFlows() : array {
+        return $this->iterateThrough($this->analyze())['flows'];
+    }
+
+    /**
+     * Gets the activities
+     * @return array the list of activities
+     */
+    public function getActivities() : array {
+        return $this->iterateThrough($this->analyze())['activities'];
     }
 
 }
