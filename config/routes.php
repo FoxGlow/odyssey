@@ -31,7 +31,7 @@ $r->addGroup('/project', function (FastRoute\RouteCollector $r) {
     $r->get('/new', 'project#new');
     $r->post('/new', 'project#create');
 
-    $r->get('/dashboard/{id:\d+}', 'project#see');
+    $r->get('/view/{projectId:\d+}', 'project#view');
 
-    $r->delete('/delete/{id:\d+}', 'project#delete');
+    $r->delete('/delete/{projectId:\d+}', 'project#delete');
 });
