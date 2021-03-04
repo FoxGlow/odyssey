@@ -55,7 +55,7 @@ class MCFAnalyzer
             for ($j = 1; $j < count($value); $j++) {
                 $flow = $flow . " " . $value[$j];
             }
-            array_push($flows, $flow);
+            array_push($flows,rtrim(ltrim($flow, "value=\""),"\""));
         }
         return $flows;
     }
