@@ -39,9 +39,32 @@ class ProjectController extends AppController {
     }
 
     public function list() {
+        $this->redirectIfUserNotAuth('/user/login');
         $project_entity = new ProjectEntity;
         $projects = $project_entity->list($this->sessionGet('userId'));
-        dd($projects);
+        echo $this->container->get('twig')->render('/pages/project/list.html.twig', [
+            'projects' => $projects
+        ]);
+    }
+
+    public function view(int $projectId) {
+        $this->redirectIfUserNotAuth('/user/login');
+        
+        // TO DO : vérifier si l'utilisateur est associé à ce projet ou non
+        $project_entity = new ProjectEntity;
+        $associate_entity = new AssociateEntity;
+        $project = $project_entity->get($projectId);
+        //$associates = $associate_entity->getForProject($projectId);
+        echo $this->container->get('twig')->render('/pages/project/view.html.twig', [
+            'project' => $project,
+            'associates' => null // TO CHANGE
+        ]);
+    }
+
+    public function delete(int $projectId) {
+        $this->redirectIfUserNotAuth('/user/login');
+
+        // TO DO
     }
 
 }
