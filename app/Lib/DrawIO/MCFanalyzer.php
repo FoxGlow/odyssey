@@ -29,7 +29,7 @@ class MCFAnalyzer
      * Starts analysis of MCF loaded file
      * @return array a list of all the flows
      */
-    public function analyze()
+    public function getFlows()
     {
         $elements = explode(" ", $this->file_content);
         $flow = "";

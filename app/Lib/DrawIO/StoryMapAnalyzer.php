@@ -29,7 +29,7 @@ class StoryMapAnalyzer
      * Starts analysis of story-map loaded file
      * @return array a list of all the epics
      */
-    public function analyze()
+    public function getEpics()
     {
 
         $elements = explode(" ", $this->file_content);
