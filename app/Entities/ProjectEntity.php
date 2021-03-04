@@ -24,7 +24,7 @@ class ProjectEntity extends BaseEntity {
 
     public function list(int $userId) {
         $request = 'SELECT projet.id_projet, projet.nom, projet.description, projet.ref_chef,
-            utilisateur.id_utilisateur, COUNT(associe.ref_utilisateur) AS nb_collaborateur,
+            utilisateur.id_utilisateur, COUNT(associe.ref_utilisateur) AS nb_collaborateurs,
             bpmn.id_bpmn, story_map.id_story_map, mcd.id_mcd, cvo.id_cvo, mcf.id_mcf
             FROM PROJET
             LEFT JOIN utilisateur ON utilisateur.id_utilisateur = projet.ref_chef
@@ -42,6 +42,17 @@ class ProjectEntity extends BaseEntity {
         $stmt->bindValue(':userId', $userId);
         $stmt->execute();
         $res = $stmt->fetchAll();
+        if (!$res) return null;
+        return $res;
+    }
+
+    public function get(int $projectId) {
+        $request = 'SELECT * FROM projet
+            WHERE projet.id_projet = :projectId';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+        $res = $stmt->fetch();
         if (!$res) return null;
         return $res;
     }
