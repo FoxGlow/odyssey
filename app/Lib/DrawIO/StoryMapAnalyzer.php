@@ -55,7 +55,7 @@ class StoryMapAnalyzer
             for ($j = 1; $j < count($value); $j++) {
                 $str = $str . " " . $value[$j];
             }
-            array_push($epics, $str);
+            array_push($epics, rtrim(ltrim($str, "value=\""),"\""));
         }
         return $epics;
     }
