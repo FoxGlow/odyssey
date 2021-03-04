@@ -17,7 +17,7 @@
                             <span class="title">{{ project.nom }}</span>
                             <span class="collab"> ({{ project.nb_collaborateurs }} collab.)</span>
                             {% if project.ref_chef == userId %}
-                                {{ svg('project/owner.svg') }}
+                                <span class="leader">chef</span>
                             {% endif %}
                         </div>
                         <span class="description">{{ project.description }}</span>
