@@ -5,6 +5,8 @@
  * @author Simon Boutrouille, Amaury Denis, Kamelia Brahimi, Thileli Saci, Zineb Brahimi
  */
 
+namespace App\Lib\DrawIO;
+
 class MCFAnalyzer
 {
     /**

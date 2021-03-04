@@ -4,6 +4,8 @@
  * @author Simon Boutrouille, Amaury Denis, Kamelia Brahimi, Thileli Saci, Zineb Brahimi
  */
 
+namespace App\Lib\BPMNIO;
+
 class BPMNAnalyzer {
     /**
      * @var String
