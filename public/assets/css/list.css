@@ -1,0 +1,101 @@
+/* PAGE */
+
+div.page {
+    background-color: var(--white);
+    border: 1px solid var(--light-gray);
+    box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
+    padding: 5vh 0 5vh 0;
+}
+
+div.page h1 {
+    text-align: center;
+}
+
+/* LIST */
+
+div.list {
+    width: 1060px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--white);
+    border: 1px solid var(--light-gray);
+    padding: 15px 15px 0 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+div.list a {
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid var(--light-gray);
+    padding: 35px;
+    width: 450px;
+    margin-bottom: 15px;
+    color: var(--black);
+}
+
+div.list a:nth-child(2n) {
+    margin-left: 15px;
+}
+
+div.list a div.list-item div.list-item-header {
+    display: flex;
+    align-items: center;
+}
+
+div.list a div.list-item div.list-item-header span.title {
+    font-weight: bold;
+}
+
+div.list a div.list-item div.list-item-header span.collab {
+    margin-left: 10px;
+    font-weight: 200;
+    font-size: 14px;
+}
+
+div.list a div.list-item div.list-item-header svg {
+    height: 22px;
+    width: 22px;
+    margin-left: 10px;
+}
+
+div.list a div.list-item span.description {
+    font-weight: 200;
+}
+
+div.list a div.list-item div.axes {
+    display: flex;
+    margin-top: 10px;
+}
+
+div.list a div.list-item div.axes div.axe {
+    display: flex;
+    font-size: 14px;
+}
+
+div.list a div.list-item div.axes div.axe span.axe-name {
+    margin-right: 15px;
+    font-weight: 100;
+}
+
+/* OTHER */
+
+div.circle {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+
+div.red {
+    background-color: var(--cream-red);
+}
+
+div.green {
+    background-color: var(--green);
+}

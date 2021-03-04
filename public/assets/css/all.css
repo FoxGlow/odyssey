@@ -6,6 +6,7 @@ html {
     --green: #6FCF97;
     --light-gray: #E2E5E7;
     --dark-red: #b03a2e;
+    --cream-red: #FE6E63;
     --red: #f1948a;
     --red-orange: #BF4F4F;
     --light-red-orange: #c46161;
@@ -29,15 +30,15 @@ div {
 }
 
 h1 {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 h2 {
-    font-weight: 200;
+    font-weight: 300;
 }
 
 p {
-    font-weight: 100;
+    font-weight: 200;
 }
 
 a {
