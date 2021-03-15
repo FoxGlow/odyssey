@@ -2,11 +2,7 @@
 
 div.page {
     background-color: var(--white);
-    border: 1px solid var(--light-gray);
-    box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
-    -moz-box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75);
-    padding: 5vh 0 5vh 0;
+    padding: 40px 0 40px 0;
 }
 
 div.page h1 {
@@ -60,7 +56,7 @@ div.list a div.list-item div.list-item-header span.collab {
 div.list a div.list-item div.list-item-header span.leader {
     border-radius: 25px;
     color: var(--white);
-    background-color: var(--blue);
+    background-color: var(--yellow);
     margin-left: 10px;
     padding: 3px 5px 3px 5px;
     font-size: 10px;

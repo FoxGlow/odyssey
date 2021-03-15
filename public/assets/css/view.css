@@ -1,0 +1,143 @@
+/* PAGE */
+
+div.page {
+    background-color: var(--white);
+    padding: 25px 0 25px 0;
+    width: 1080px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.page h1 {
+    margin-bottom: 5px;
+}
+
+/* PANEL */
+
+div.panel {
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px 15px 0 15px;
+    margin-top: 25px;
+}
+
+div.panel>div {
+    background-color: var(--white);
+    border: 1px solid var(--light-gray);
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 25px;
+}
+
+div.panel>div h2 {
+    margin-top: 0;
+}
+
+/* FILES COMPONENT */
+
+div.panel div.files-card {
+    width: 100%;
+    padding: 25px 25px 0 25px;
+}
+
+div.panel div.files-card div.files {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+div.panel div.files-card div.files>div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+/* ANALYSIS COMPONENT */
+
+div.panel div.analysis-card {
+    width: 100%;
+}
+
+/* ASSOCIATES COMPONENT */
+
+div.panel div.associates-card div.associates div.associate {
+    margin: 5px 0 5px 0;
+    display: flex;
+    align-items: center;
+}
+
+div.panel div.associates-card div.associates div.associate:nth-child(2n) {
+    background-color: var(--dark-white);
+}
+
+div.panel div.associates-card div.associates div.associate span.firstname {
+    margin-left: 5px;
+}
+
+/* FORMS */
+
+form input[type="text"] {
+    border: 1px solid var(--dark-blue);
+    border-radius: 8px;
+    height: 20px;
+    font-size: 14px;
+    font-weight: 200;
+    padding: 0 5px 0 5px;
+}
+
+form input[type="submit"] {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    padding: 3px 5px 3px 5px;
+    font-size: 11px;
+    font-weight: 300;
+    border-radius: 5px;
+    margin: auto;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+form input[type="submit"]:hover {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+/* OTHER */
+
+div.state {
+    display: flex;
+}
+
+div.state div.circle {
+    margin-top: 5px;
+}
+
+div.circle {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: 4px;
+}
+
+div.red {
+    background-color: var(--cream-red);
+}
+
+div.green {
+    background-color: var(--green);
+}
+
+span.leader {
+    border-radius: 25px;
+    color: var(--white);
+    background-color: var(--yellow);
+    padding: 3px 5px 3px 5px;
+    font-size: 10px;
+    margin-left: 10px;
+}
