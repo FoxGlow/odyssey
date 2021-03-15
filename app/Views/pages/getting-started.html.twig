@@ -1,0 +1,120 @@
+{% extends "template.html.twig" %}
+
+{% block head %}
+    <title>Getting started - Odyssey</title>
+    <link rel="stylesheet" href="{{ css('getting-started.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="page">
+        <h1>Getting started</h1>
+        <p>
+            Bienvenue sur <span class="strong">Odyssey</span> !<br> 
+            Cette application vous permet de collaborer avec d'autres utilisateurs, 
+            bénéficier de conseils, mais également de vérifier la cohérence entre 
+            certains de vos axes d'analyse en vous présentant des taux de couverture. 
+        </p>
+        <p>Cette page vous guidera pas à pas dans l'utilisation de cette application.</p>
+
+        <section>
+            <h2>Créer un compte</h2>
+            <p>
+                Si vous ne possédez pas déjà un compte, cette étape est indispensable pour 
+                commencer à travailler et collaborer.<br>
+                Rendez-vous <a href="/user/register">ici</a> pour créer un compte, quelques 
+                informations seront à renseigner.
+            </p>
+        </section>
+
+        <section>
+            <h2>Se connecter</h2>
+            <p>
+                Si vous possédez un compte, connectez-vous <a href="/user/login">ici</a> 
+                afin d'accéder à votre espace personnel.<br>
+                Vous pourrez alors consulter votre liste de projets, créer de nouveaux projets, etc...
+            </p>
+        </section>
+
+        <section>
+            <h2>Créer un projet</h2>
+            <p>
+                Une fois authentifié, rendez-vous <a href="/project/new">ici</a> pour 
+                démarrer un nouveau projet.<br>
+                Il suffit de renseigner le nom du projet ainsi qu'une description. Vous êtes 
+                maintenant <span class="strong">chef</span> de ce projet.
+            </p>
+        </section>
+
+        <section>
+            <h2>Ajouter des collaborateurs</h2>
+            <p>
+                Vous avez la possibilité d'ajouter des collaborateurs à l'un de vos projets, 
+                pour se faire il suffit de renseigner l'adresse mail d'un collaborateur depuis
+                l'écran de contrôle du projet (et faire de même pour les autres).
+            </p>
+        </section>
+
+        <section>
+            <h2>Envoyer des messages</h2>
+            <p>
+                Lorsque vous participez à un projet, il vous est possible d'envoyer des messages 
+                que les autres collaborateurs du projet pourront voir.<br>
+                Cette action s'effectue depuis l'écran de contrôle du projet.
+            </p>
+        </section>
+
+        <section>
+            <h2>Importer des fichiers</h2>
+            <p>
+                Depuis l'écran de contrôle d'un projet, il vous est possible d'importer des 
+                fichiers pour chacun des axes d'analyse. Le format n'est important que si vous 
+                souhaitez bénéficier de feedbacks.<br>
+                Nous allons énoncer les règles à respecter pour permettre à l'application de 
+                procéder aux différentes analyses.<br>
+                Dans le cas où l'utilisateur ne souhaite pas bénéficier des feedbacks, il n'est 
+                pas obligé de suivre ces règles.
+            </p>
+
+            <h3>Story-map</h3>
+            <p>
+                Elle doit impérativement être crée sur <a href="https://draw.io">draw.io</a> et 
+                doit être exportée au format ".drawio".
+                Cependant, une contrainte est imposée, les <span class="strong">épics</span> 
+                doivent être contenus dans un cadre rouge aux bords arrondis comme suit :
+            </p>
+            <img src="{{ img('getting-started/ChoixCadre.png') }}" alt="sélection du cadre">
+
+            <h3>MCF</h3>
+            <p>
+                Cet axe d'analyse doit lui aussi être crée via <a href="https://draw.io">draw.io</a> 
+                et être exporté au format ".drawio".
+                Ici la contrainte à respecter est que les flèches utilisées pour représenter les 
+                flux soient celle-ci :
+            </p>
+            <img src="{{ img('getting-started/ChoixFleche.png') }}" alt="sélection du type de flèche">
+            <p>
+                D'autre part, les noms des flux doivent être attachés à la flèche concernée. 
+                Pour cela, il suffit de double-cliquer sur la flèche portant le flux, le message 
+                apparaîtra alors comme ci-dessous :
+            </p>
+            <img src="{{ img('getting-started/NomFlux.png') }}" alt="nom attaché à un flux">
+
+            <h3>BPMN</h3>
+            <p>
+                Vos BPMN auront pour unique contrainte d'être conçus sur <a href="https://bpmn.io">bpmn.io</a> 
+                et être exportés au format ".bpmn".
+                Veillez à ce que les noms des flux contenus dans le MCF sont identiques à ceux 
+                contenus dans votre BPMN (au caractère près).
+            </p>
+        </section>
+
+        <section>
+            <h2>Mécanisme des feedbacks</h2>
+            <p>
+                Lors de l'importation d'un axe d'analyse, le site effectue une analyse de cohérence 
+                si c'est possible, c'est-à-dire que les autres fichiers nécessaires sont déjà importés.<br>
+                Les résultats seront affichés sur le panneau de contrôle du projet.
+            </p>
+        </section>
+    </div>
+{% endblock %}

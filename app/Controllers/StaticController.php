@@ -14,7 +14,7 @@ class StaticController extends AppController {
     }
 
     public function gettingStarted() {
-        // TODO
+        echo $this->container->get('twig')->render('/pages/getting-started.html.twig');
     }
 
     public function credits() {
