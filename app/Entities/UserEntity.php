@@ -37,4 +37,15 @@ class UserEntity extends BaseEntity {
         return $res;
     }
 
+    public function exists(string $mail_address) {
+        $request = 'SELECT id_utilisateur FROM utilisateur
+            WHERE mail = :mail_address';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':mail_address', $mail_address);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        if (!$res) return null;
+        return $res;
+    }
+
 }

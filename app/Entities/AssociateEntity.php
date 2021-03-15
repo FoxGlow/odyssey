@@ -21,8 +21,28 @@ class AssociateEntity extends BaseEntity {
         return $res;
     }
 
-    public function remove() {
-        // TO DO
+    public function delete(int $associateId, int $projectId) {
+        $request = 'DELETE FROM associe 
+            WHERE associe.ref_utilisateur = :associateId AND associe.ref_projet = :projectId';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':associateId', $associateId);
+        $stmt->bindValue(':projectId', $projectId);
+        $res = $stmt->execute();
+        return $res;
+    }
+
+    public function getForProject(int $projectId) {
+        $request = 'SELECT associe.ref_utilisateur, utilisateur.nom, utilisateur.prenom
+            FROM associe
+            LEFT JOIN utilisateur ON associe.ref_utilisateur = utilisateur.id_utilisateur
+            LEFT JOIN projet ON associe.ref_projet = projet.id_projet
+            WHERE projet.id_projet = :projectId';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+        $res = $stmt->fetchAll();
+        if (!$res) return null;
+        return $res;
     }
 
 }
