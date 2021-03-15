@@ -1,0 +1,75 @@
+<div class="files-card">
+    <h2>Fichiers importés</h2>
+
+    <div class="files">
+        <div class="mcf">
+            <div class="state">
+                <div class="circle {% if project.id_mcf is null %}red{% else %}green{% endif %}"></div>
+                <span class="axe-name">MCF</span>
+            </div>
+            <form action="/file/add/mcf" method="POST">
+                <input id="mcf_file" type="file" name="mcf_file">
+        		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
+                <div class="button-holder">
+                    <input type="submit" value="Importer">
+                </div>
+            </form>
+        </div>
+
+        <div class="bpmn">
+            <div class="state">
+                <div class="circle {% if project.id_bpmn is null %}red{% else %}green{% endif %}"></div>
+                <span class="axe-name">BPMN</span>
+            </div>
+            <form action="/file/add/bpmn" method="POST">
+                <input id="bpmn_file" type="file" name="bpmn_file">
+        		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
+                <div class="button-holder">
+                    <input type="submit" value="Importer">
+                </div>
+            </form>
+        </div>
+
+        <div class="mcd">
+            <div class="state">
+                <div class="circle {% if project.id_mcd is null %}red{% else %}green{% endif %}"></div>
+                <span class="axe-name">MCD</span>
+            </div>
+            <form action="/file/add/mcd" method="POST">
+                <input id="mcd_file" type="file" name="mcd_file">
+        		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
+                <div class="button-holder">
+                    <input type="submit" value="Importer">
+                </div>
+            </form>
+        </div>
+
+        <div class="cvo">
+            <div class="state">
+                <div class="circle {% if project.id_cvo is null %}red{% else %}green{% endif %}"></div>
+                <span class="axe-name">CVO</span>
+            </div>
+            <form action="/file/add/cvo" method="POST">
+                <input id="cvo_file" type="file" name="cvo_file">
+        		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
+                <div class="button-holder">
+                    <input type="submit" value="Importer">
+                </div>
+            </form>
+        </div>
+
+        <div class="story-map">
+            <div class="state">
+                <div class="circle {% if project.id_story_map is null %}red{% else %}green{% endif %}"></div>
+                <span class="axe-name">Story-map</span>
+            </div>
+            <form action="/file/add/story-map" method="POST">
+                <input id="story_map_file" type="file" name="story_map_file">
+        		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
+                <div class="button-holder">
+                    <input type="submit" value="Importer">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

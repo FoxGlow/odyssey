@@ -1,0 +1,20 @@
+{% extends "template.html.twig" %}
+
+{% block head %}
+    <title>{{ project.nom }} - Odyssey</title>
+    <link rel="stylesheet" href="{{ css('view.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="page">
+        <h1>{{ project.nom }}</h1>
+        <span class="description">{{ project.description }}</span>
+
+        <div class="panel">
+            {% embed 'components/project/files.html.twig' %}{% endembed %}
+            {% embed 'components/project/analysis.html.twig' %}{% endembed %}
+            {% embed 'components/project/associates.html.twig' %}{% endembed %}
+            {% embed 'components/project/messages.html.twig' %}{% endembed %}
+        </div>
+    </div>
+{% endblock %}

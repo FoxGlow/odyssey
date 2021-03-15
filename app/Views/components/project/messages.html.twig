@@ -1,0 +1,28 @@
+<div class="messages-card">
+	<h2>Messages</h2>
+
+	<form action="/message/post" method="post">
+		<label for="message">Message</label>
+		<input id="message" type="text" name="message">
+		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
+		<div class="button-holder">
+			<input class="bg-blue" type="submit" value="Envoyer">
+		</div>
+	</form>
+
+	<div class="messages">
+        {% for message in messages %}
+			<div class="message">
+				<div class="message-header">
+					<span class="firstname">{{ message.prenom }}</span>
+					<span class="lastname">{{ message.nom }}</span>
+					<span class="date">{{ message.date_ }}</span>
+				</div>
+				<span class="message-text">{{ message.texte }}</span>
+				{% if (userId == project.ref_chef) or (userId == message.id_utilisateur) %}
+					<a href="/message/delete/{{ message.id_message }}/{{ project.id_projet }}">Supprimer</a>
+				{% endif %}
+			</div>
+		{% endfor %}
+    </div>
+</div>

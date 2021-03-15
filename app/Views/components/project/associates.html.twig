@@ -1,0 +1,27 @@
+<div class="associates-card">
+	<h2>Collaborateurs</h2>
+
+	<form action="/associate/add" method="post">
+		<label for="mail_address">Adresse mail</label>
+		<input id="mail_address" type="text" name="mail_address">
+		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
+		<div class="button-holder">
+			<input class="bg-blue" type="submit" value="Ajouter">
+		</div>
+	</form>
+
+	<div class="associates">
+        {% for associate in associates %}
+			<div class="associate">
+                <span class="lastname">{{ associate.nom }}</span>
+                <span class="firstname">{{ associate.prenom }}</span>
+                {% if associate.ref_utilisateur == project.ref_chef %}
+                    <span class="leader">chef</span>
+                {% endif %}
+                {% if userId == project.ref_chef %}
+                    <a href="/associate/delete/{{ associate.ref_utilisateur }}/{{ project.id_projet }}">Supprimer</a>
+                {% endif %}
+			</div>
+		{% endfor %}
+    </div>
+</div>
