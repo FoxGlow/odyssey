@@ -8,6 +8,7 @@
 namespace App\Controllers;
 
 use App\Entities\AssociateEntity;
+use App\Entities\MessageEntity;
 use App\Entities\ProjectEntity;
 
 class ProjectController extends AppController {
@@ -53,11 +54,15 @@ class ProjectController extends AppController {
         // TO DO : vérifier si l'utilisateur est associé à ce projet ou non
         $project_entity = new ProjectEntity;
         $associate_entity = new AssociateEntity;
+        $message_entity = new MessageEntity;
+
         $project = $project_entity->get($projectId);
-        //$associates = $associate_entity->getForProject($projectId);
+        $associates = $associate_entity->getForProject($projectId);
+        $messages = $message_entity->getForProject($projectId);
         echo $this->container->get('twig')->render('/pages/project/view.html.twig', [
             'project' => $project,
-            'associates' => null // TO CHANGE
+            'associates' => $associates,
+            'messages' => $messages
         ]);
     }
 
