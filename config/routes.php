@@ -35,3 +35,13 @@ $r->addGroup('/project', function (FastRoute\RouteCollector $r) {
 
     $r->delete('/delete/{projectId:\d+}', 'project#delete');
 });
+
+$r->addGroup('/message', function (FastRoute\RouteCollector $r) {
+    $r->post('/post', 'message#post');
+    $r->get('/delete/{messageId:\d+}/{projectId:\d+}', 'message#delete');
+});
+
+$r->addGroup('/associate', function (FastRoute\RouteCollector $r) {
+    $r->post('/add', 'associate#add');
+    $r->get('/delete/{associateId:\d+}/{projectId:\d+}', 'associate#delete');
+});
