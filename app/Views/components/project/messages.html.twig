@@ -20,7 +20,7 @@
 				</div>
 				<span class="message-text">{{ message.texte }}</span>
 				{% if (userId == project.ref_chef) or (userId == message.id_utilisateur) %}
-					<a href="/message/delete/{{ message.id_message }}/{{ project.id_projet }}">Supprimer</a>
+					<a class="delete-link" href="/message/delete/{{ message.id_message }}/{{ project.id_projet }}">Supprimer</a>
 				{% endif %}
 			</div>
 		{% endfor %}

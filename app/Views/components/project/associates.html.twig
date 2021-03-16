@@ -18,8 +18,8 @@
                 {% if associate.ref_utilisateur == project.ref_chef %}
                     <span class="leader">chef</span>
                 {% endif %}
-                {% if userId == project.ref_chef %}
-                    <a href="/associate/delete/{{ associate.ref_utilisateur }}/{{ project.id_projet }}">Supprimer</a>
+                {% if (userId == project.ref_chef) or (userId == associate.ref_utilisateur) %}
+                    <a class="delete-link" href="/associate/delete/{{ associate.ref_utilisateur }}/{{ project.id_projet }}">Supprimer</a>
                 {% endif %}
 			</div>
 		{% endfor %}

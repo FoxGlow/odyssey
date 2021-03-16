@@ -9,12 +9,17 @@
     <div class="page">
         <h1>{{ project.nom }}</h1>
         <span class="description">{{ project.description }}</span>
+        
+        {% if userId == project.ref_chef %}
+            <br><br><a class="delete-link" href="/project/delete/{{ project.id_projet }}">Supprimer</a>
+        {% endif %}
 
         <div class="panel">
             {% embed 'components/project/files.html.twig' %}{% endembed %}
             {% embed 'components/project/analysis.html.twig' %}{% endembed %}
             {% embed 'components/project/associates.html.twig' %}{% endembed %}
             {% embed 'components/project/messages.html.twig' %}{% endembed %}
+            {% embed "components/project/advice.html.twig" %}{% endembed %}
         </div>
     </div>
 {% endblock %}
