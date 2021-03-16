@@ -6,14 +6,12 @@ mail VARCHAR (255),
 mot_de_passe VARCHAR(255) NOT NULL,
 UNIQUE KEY unique_email (mail));
 
-
 CREATE TABLE projet(
 id_projet int PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 nom VARCHAR (255) NOT NULL, 
 description VARCHAR(255) NOT NULL,
 ref_chef int NOT NULL,
 CONSTRAINT FK_PROJET_REF_CHEF FOREIGN KEY (ref_chef) REFERENCES utilisateur(id_utilisateur));
-
 
 CREATE TABLE message(
 id_message INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -43,32 +41,42 @@ CONSTRAINT FK_FEEDBACK_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_
 
 CREATE TABLE mcd( 
 id_mcd int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-fichier long NOT NULL,
+fichier MEDIUMBLOB NOT NULL,
+nom VARCHAR(255) NOT NULL,
 ref_projet int NOT NULL,
+UNIQUE KEY unique_ref_projet (ref_projet),
 CONSTRAINT FK_MCD_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
 
 CREATE TABLE cvo( 
 id_cvo int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-fichier long NOT NULL,
+fichier MEDIUMBLOB NOT NULL,
+nom VARCHAR(255) NOT NULL,
 ref_projet int NOT NULL,
+UNIQUE KEY unique_ref_projet (ref_projet),
 CONSTRAINT FK_CVO_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
 
 CREATE TABLE bpmn( 
 id_bpmn int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-fichier long NOT NULL,
+fichier MEDIUMBLOB NOT NULL,
+nom VARCHAR(255) NOT NULL,
 ref_projet int NOT NULL,
+UNIQUE KEY unique_ref_projet (ref_projet),
 CONSTRAINT FK_BPMN_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
 
 CREATE TABLE story_map( 
 id_story_map int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-fichier long NOT NULL,
+fichier MEDIUMBLOB NOT NULL,
+nom VARCHAR(255) NOT NULL,
 ref_projet int NOT NULL,
+UNIQUE KEY unique_ref_projet (ref_projet),
 CONSTRAINT FK_STORY_MAP_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
 
 CREATE TABLE mcf( 
 id_mcf int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-fichier long NOT NULL,
+fichier MEDIUMBLOB NOT NULL,
+nom VARCHAR(255) NOT NULL,
 ref_projet int NOT NULL,
+UNIQUE KEY unique_ref_projet (ref_projet),
 CONSTRAINT FK_MCF_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
 
 CREATE TABLE conseil (
