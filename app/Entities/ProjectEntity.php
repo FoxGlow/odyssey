@@ -66,4 +66,12 @@ class ProjectEntity extends BaseEntity {
         return $res;
     }
 
+    public function delete(int $projectId) {
+        $request = 'DELETE FROM projet WHERE id_projet = :projectId';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':projectId', $projectId);
+        $res = $stmt->execute();
+        return $res;
+    }
+
 }
