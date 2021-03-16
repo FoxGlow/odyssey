@@ -7,6 +7,7 @@
 
 namespace App\Controllers;
 
+use App\Entities\AdviceEntity;
 use App\Entities\AssociateEntity;
 use App\Entities\MessageEntity;
 use App\Entities\ProjectEntity;
@@ -55,21 +56,25 @@ class ProjectController extends AppController {
         $project_entity = new ProjectEntity;
         $associate_entity = new AssociateEntity;
         $message_entity = new MessageEntity;
+        $advice_entity = new AdviceEntity;
 
         $project = $project_entity->get($projectId);
         $associates = $associate_entity->getForProject($projectId);
         $messages = $message_entity->getForProject($projectId);
+        $advice = $advice_entity->getRandomAdvice();
         echo $this->container->get('twig')->render('/pages/project/view.html.twig', [
             'project' => $project,
             'associates' => $associates,
-            'messages' => $messages
+            'messages' => $messages,
+            'advice' => $advice
         ]);
     }
 
     public function delete(int $projectId) {
         $this->redirectIfUserNotAuth('/user/login');
-
-        // TO DO
+        $project_entity = new ProjectEntity;
+        $project_entity->delete($projectId);
+        $this->redirect('/project/list');
     }
 
 }
