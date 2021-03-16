@@ -45,3 +45,9 @@ $r->addGroup('/associate', function (FastRoute\RouteCollector $r) {
     $r->post('/add', 'associate#add');
     $r->get('/delete/{associateId:\d+}/{projectId:\d+}', 'associate#delete');
 });
+
+$r->addGroup('/file', function (FastRoute\RouteCollector $r) {
+    $r->post('/add', 'file#import');
+    $r->get('/download/{category}/{fileId:\d+}/{projectId:\d+}', 'file#download');
+    $r->get('/delete/{category}/{fileId:\d+}/{projectId:\d+}', 'file#delete');
+});
