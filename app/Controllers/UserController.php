@@ -35,7 +35,7 @@ class UserController extends AppController {
                 $this->sessionSet('mail', $res['mail']);
                 $this->sessionSet('lastname', $res['nom']);
                 $this->sessionSet('firstname', $res['prenom']);
-                $this->redirect('/'); // TO CHANGE
+                $this->redirect('/project/list');
             }
             // Incorrect mail address and/or password
             else {
