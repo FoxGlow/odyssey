@@ -172,15 +172,11 @@ div.circle {
     width: 10px;
     border-radius: 50%;
     margin-right: 5px;
-    margin-top: 4px;
-}
-
-div.red {
-    background-color: var(--cream-red);
-}
-
-div.green {
     background-color: var(--green);
+}
+
+div.circle.red {
+    background-color: var(--cream-red);
 }
 
 span.leader {
