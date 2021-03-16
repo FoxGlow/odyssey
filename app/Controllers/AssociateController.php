@@ -14,7 +14,10 @@ class AssociateController extends AppController {
 
     public function add(string $mail_address, int $projectId) {
         $this->redirectIfUserNotAuth('/user/login');
-
+        if(!$this->isUserLeaderOf($projectId))
+            $this->redirect('/project/view/' . $projectId);
+        
+        // VERIF
         $user_entity = new UserEntity;
         $userId = $user_entity->exists($mail_address);
         if (!is_null($userId)) {
@@ -26,7 +29,10 @@ class AssociateController extends AppController {
 
     public function delete(int $associateId, int $projectId) {
         $this->redirectIfUserNotAuth('/user/login');
+        if (!$this->isUserAssociatedTo($projectId))
+            $this->redirect('/project/list');
 
+        // VERIF
         $associate_entity = new AssociateEntity;
         $res = $associate_entity->delete($associateId, $projectId);
 

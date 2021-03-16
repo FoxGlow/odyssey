@@ -51,8 +51,9 @@ class ProjectController extends AppController {
 
     public function view(int $projectId) {
         $this->redirectIfUserNotAuth('/user/login');
-        
-        // TO DO : vérifier si l'utilisateur est associé à ce projet ou non
+        if (!$this->isUserAssociatedTo($projectId))
+            $this->redirect('/project/list');
+
         $project_entity = new ProjectEntity;
         $associate_entity = new AssociateEntity;
         $message_entity = new MessageEntity;
@@ -72,6 +73,9 @@ class ProjectController extends AppController {
 
     public function delete(int $projectId) {
         $this->redirectIfUserNotAuth('/user/login');
+        if(!$this->isUserLeaderOf($projectId))
+            $this->redirect('/project/list');
+
         $project_entity = new ProjectEntity;
         $project_entity->delete($projectId);
         $this->redirect('/project/list');

@@ -7,6 +7,8 @@
 
 namespace App\Controllers;
 
+use App\Entities\AssociateEntity;
+use App\Entities\ProjectEntity;
 use Core\Controller\BaseController;
 
 class AppController extends BaseController {
@@ -42,6 +44,20 @@ class AppController extends BaseController {
     protected function redirectIfUserNotAuth(string $pathname) : void {
         if (!$this->isUserAuth())
             $this->redirect($pathname);
+    }
+
+    protected function isUserLeaderOf(int $projectId) : bool {
+        $project_entity = new ProjectEntity;
+        if (is_null($project_entity->leaderOf($this->sessionGet('userId'), $projectId)))
+            return false;
+        return true;
+    }
+
+    protected function isUserAssociatedTo(int $projectId) : bool {
+        $associate_entity = new AssociateEntity;
+        if (is_null($associate_entity->associateTo($this->sessionGet('userId'), $projectId)))
+            return false;
+        return true;
     }
 
     protected function sessionSet(string $key, $value) : void {
