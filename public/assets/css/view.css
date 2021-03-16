@@ -62,12 +62,42 @@ div.panel div.analysis-card {
     width: 100%;
 }
 
+/* ASSOCIATES AND MESSAGES COMPONENTS */
+
+div.panel div.associates-card, div.panel div.messages-card {
+    height: 400px;
+    width: 464px;
+}
+
+div.panel div.associates-card div.associates, div.panel div.messages-card div.messages {
+    overflow-y: scroll;
+    height: 300px;
+    max-height: 300px;
+}
+
+div.panel div.associates-card div.associates div.associate, div.panel div.messages-card div.message {
+    border-radius: 5px;
+    padding: 5px;
+}
+
 /* ASSOCIATES COMPONENT */
+
+div.panel div.associates-card {
+    margin-right: 15px;
+}
+
+div.panel div.associates-card div.associates {
+    margin-top: 15px;
+}
 
 div.panel div.associates-card div.associates div.associate {
     margin: 5px 0 5px 0;
     display: flex;
     align-items: center;
+}
+
+div.panel div.associates-card div.associates div.associate a {
+    margin-left: 10px;
 }
 
 div.panel div.associates-card div.associates div.associate:nth-child(2n) {
@@ -76,6 +106,26 @@ div.panel div.associates-card div.associates div.associate:nth-child(2n) {
 
 div.panel div.associates-card div.associates div.associate span.firstname {
     margin-left: 5px;
+}
+
+/* MESSAGES COMPONENT */
+
+div.panel div.messages-card div.messages {
+    margin-top: 15px;
+}
+
+div.panel div.messages-card div.messages div.message:nth-child(2n) {
+    background-color: var(--dark-white);
+}
+
+/* ADVICE COMPONENT */
+
+div.panel div.advice-card {
+    width: 100%;
+}
+
+div.panel div.advice-card span.type {
+    color: var(--green);
 }
 
 /* FORMS */
@@ -140,4 +190,38 @@ span.leader {
     padding: 3px 5px 3px 5px;
     font-size: 10px;
     margin-left: 10px;
+}
+
+a.delete-link {
+    background-color: var(--white);
+    color: var(--cream-red);
+    border: 1px solid var(--cream-red);
+    padding: 3px 5px 3px 5px;
+    font-size: 11px;
+    font-weight: 300;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+a.delete-link:hover {
+    background-color: var(--cream-red);
+    color: var(--white);
+}
+
+a.action-link {
+    background-color: var(--white);
+    color: var(--blue);
+    border: 1px solid var(--blue);
+    padding: 3px 5px 3px 5px;
+    font-size: 11px;
+    font-weight: 300;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+a.action-link:hover {
+    background-color: var(--blue);
+    color: var(--white);
 }
