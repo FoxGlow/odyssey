@@ -45,4 +45,16 @@ class AssociateEntity extends BaseEntity {
         return $res;
     }
 
+    public function associateTo(int $userId, int $projectId) {
+        $request = 'SELECT ref_utilisateur FROM associe
+                WHERE ref_utilisateur = :userId AND ref_projet = :projectId';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':userId', $userId);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        if (!$res) return null;
+        return $res;
+    }
+
 }

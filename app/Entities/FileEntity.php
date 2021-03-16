@@ -13,15 +13,14 @@ class FileEntity extends BaseEntity {
 
     private $categories = ['mcf', 'mcd', 'cvo', 'bpmn', 'story_map'];
 
-    public function importFile(string $category, string $name, string $content, int $projectId, bool $analyzable) {
+    public function importFile(string $category, string $name, string $content, int $projectId) {
         if (!in_array($category, $this->categories)) return null;
-        $request = "INSERT INTO {$category}(fichier, nom, analysable, ref_projet) 
-                VALUES(:content, :name, :analyzable, :projectId)";
+        $request = "INSERT INTO {$category}(fichier, nom, ref_projet) 
+                VALUES(:content, :name, :projectId)";
         $stmt = $this->db_connection::getInstance()->prepare($request);
         $stmt->bindValue(':content', $content);
         $stmt->bindValue(':name', $name);
         $stmt->bindValue(':projectId', $projectId);
-        $stmt->bindValue(':analyzable', $analyzable);
         $res = $stmt->execute();
         return $res;
     }

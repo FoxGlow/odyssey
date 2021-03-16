@@ -74,4 +74,16 @@ class ProjectEntity extends BaseEntity {
         return $res;
     }
 
+    public function leaderOf(int $userId, int $projectId) {
+        $request = 'SELECT ref_chef FROM projet
+                WHERE ref_chef = :userId AND id_projet = :projectId';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':userId', $userId);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        if (!$res) return null;
+        return $res;
+    }
+
 }
