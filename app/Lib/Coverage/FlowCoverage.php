@@ -6,9 +6,6 @@
 
 namespace App\Lib\Coverage;
 
-//require '../BPMNIO/BPMNAnalyzer.php'; //for testing purpose
-//require '../DrawIO/MCFanalyzer.php'; //for testing purpose
-
 use App\Lib\BPMNIO\BPMNAnalyzer;
 use App\Lib\DrawIO\MCFAnalyzer;
 
@@ -32,7 +29,7 @@ class FlowCoverage {
         $this->mcf_analyzer->loadFileContent($mfc_content);
     }
 
-    public function analyzeCoverage() : array {
+    private function analyzeCoverage() : array {
         $bpmn_flows = $this->bpmn_analyzer->getFlows();
         $mcf_flows = $this->mcf_analyzer->getFlows();
         
