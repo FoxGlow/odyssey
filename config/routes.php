@@ -33,7 +33,7 @@ $r->addGroup('/project', function (FastRoute\RouteCollector $r) {
 
     $r->get('/view/{projectId:\d+}', 'project#view');
 
-    $r->delete('/delete/{projectId:\d+}', 'project#delete');
+    $r->get('/delete/{projectId:\d+}', 'project#delete');
 });
 
 $r->addGroup('/message', function (FastRoute\RouteCollector $r) {
