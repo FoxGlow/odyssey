@@ -7,14 +7,17 @@
                 <div class="circle {% if project.id_mcf is null %}red{% else %}green{% endif %}"></div>
                 <span class="axe-name">MCF</span>
             </div>
-            <form action="/file/add/mcf" method="POST">
-                <input id="mcf_file" type="file" name="mcf_file">
+            <form action="/file/add" method="POST" enctype="multipart/form-data">
+                <input id="mcf_file" type="file" name="file">
+                <input type="hidden" name="category" value="mcf">
         		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
                 <div class="button-holder">
                     <input type="submit" value="Importer">
                 </div>
-                <a class="action-link" href="">Télécharger</a>
-                <a class="delete-link" href="">Supprimer</a>
+                {% if not project.id_mcf is null %}
+                    <a class="action-link" href="/file/download/mcf/{{ project.id_mcf }}/{{ project.id_projet }}">Télécharger</a>
+                    <a class="delete-link" href="/file/delete/mcf/{{ project.id_mcf }}/{{ project.id_projet }}">Supprimer</a>
+                {% endif %}
             </form>
         </div>
 
@@ -23,14 +26,17 @@
                 <div class="circle {% if project.id_bpmn is null %}red{% else %}green{% endif %}"></div>
                 <span class="axe-name">BPMN</span>
             </div>
-            <form action="/file/add/bpmn" method="POST">
-                <input id="bpmn_file" type="file" name="bpmn_file">
+            <form action="/file/add" method="POST" enctype="multipart/form-data">
+                <input id="bpmn_file" type="file" name="file">
+                <input type="hidden" name="category" value="bpmn">
         		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
                 <div class="button-holder">
                     <input type="submit" value="Importer">
                 </div>
-                <a class="action-link" href="">Télécharger</a>
-                <a class="delete-link" href="">Supprimer</a>
+                {% if not project.id_bpmn is null %}
+                    <a class="action-link" href="/file/download/bpmn/{{ project.id_bpmn }}/{{ project.id_projet }}">Télécharger</a>
+                    <a class="delete-link" href="/file/delete/bpmn/{{ project.id_bpmn }}/{{ project.id_projet }}">Supprimer</a>
+                {% endif %}
             </form>
         </div>
 
@@ -39,14 +45,17 @@
                 <div class="circle {% if project.id_mcd is null %}red{% else %}green{% endif %}"></div>
                 <span class="axe-name">MCD</span>
             </div>
-            <form action="/file/add/mcd" method="POST">
-                <input id="mcd_file" type="file" name="mcd_file">
+            <form action="/file/add" method="POST" enctype="multipart/form-data">
+                <input id="mcd_file" type="file" name="file">
+                <input type="hidden" name="category" value="mcd">
         		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
                 <div class="button-holder">
                     <input type="submit" value="Importer">
                 </div>
-                <a class="action-link" href="">Télécharger</a>
-                <a class="delete-link" href="">Supprimer</a>
+                {% if not project.id_mcd is null %}
+                    <a class="action-link" href="/file/download/mcd/{{ project.id_mcd }}/{{ project.id_projet }}">Télécharger</a>
+                    <a class="delete-link" href="/file/delete/mcd/{{ project.id_mcd }}/{{ project.id_projet }}">Supprimer</a>
+                {% endif %}
             </form>
         </div>
 
@@ -55,14 +64,17 @@
                 <div class="circle {% if project.id_cvo is null %}red{% else %}green{% endif %}"></div>
                 <span class="axe-name">CVO</span>
             </div>
-            <form action="/file/add/cvo" method="POST">
-                <input id="cvo_file" type="file" name="cvo_file">
+            <form action="/file/add" method="POST" enctype="multipart/form-data">
+                <input id="cvo_file" type="file" name="file">
+                <input type="hidden" name="category" value="cvo">
         		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
                 <div class="button-holder">
                     <input type="submit" value="Importer">
                 </div>
-                <a class="action-link" href="">Télécharger</a>
-                <a class="delete-link" href="">Supprimer</a>
+                {% if not project.id_cvo is null %}
+                    <a class="action-link" href="/file/download/cvo/{{ project.id_cvo }}/{{ project.id_projet }}">Télécharger</a>
+                    <a class="delete-link" href="/file/delete/cvo/{{ project.id_cvo }}/{{ project.id_projet }}">Supprimer</a>
+                {% endif %}
             </form>
         </div>
 
@@ -71,14 +83,17 @@
                 <div class="circle {% if project.id_story_map is null %}red{% else %}green{% endif %}"></div>
                 <span class="axe-name">Story-map</span>
             </div>
-            <form action="/file/add/story-map" method="POST">
-                <input id="story_map_file" type="file" name="story_map_file">
+            <form action="/file/add" method="POST" enctype="multipart/form-data">
+                <input id="story_map_file" type="file" name="file">
+                <input type="hidden" name="category" value="story_map">
         		<input id="projectId" name="projectId" type="hidden" value="{{ project.id_projet }}">
                 <div class="button-holder">
                     <input type="submit" value="Importer">
                 </div>
-                <a class="action-link" href="">Télécharger</a>
-                <a class="delete-link" href="">Supprimer</a>
+                {% if not project.id_story_map is null %}
+                    <a class="action-link" href="/file/download/story_map/{{ project.id_story_map }}/{{ project.id_projet }}">Télécharger</a>
+                    <a class="delete-link" href="/file/delete/story_map/{{ project.id_story_map }}/{{ project.id_projet }}">Supprimer</a>
+                {% endif %}
             </form>
         </div>
     </div>
