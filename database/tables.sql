@@ -17,7 +17,7 @@ CONSTRAINT FK_PROJET_REF_CHEF FOREIGN KEY (ref_chef) REFERENCES utilisateur(id_u
 
 CREATE TABLE message(
 id_message INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
-texte VARCHAR (255) NOT NULL,
+texte VARCHAR (1024) NOT NULL,
 date_ DATETIME NOT NULL,
 ref_utilisateur INT NOT NULL,
 ref_projet INT NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE associe(
 
 CREATE TABLE feedback(
 id_feedback int PRIMARY KEY NOT NULL AUTO_INCREMENT, 
-message VARCHAR (255) NOT NULL, 
+message VARCHAR (1024) NOT NULL, 
 ref_projet int NOT NULL,
 CONSTRAINT FK_FEEDBACK_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
 
@@ -74,6 +74,4 @@ CONSTRAINT FK_MCF_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_proje
 CREATE TABLE conseil (
 id_conseil int PRIMARY KEY NOT NULL AUTO_INCREMENT, 
 texte VARCHAR (556) NOT NULL, 
-type VARCHAR (255) NOT NULL,
-ref_utilisateur int NOT NULL,
-CONSTRAINT FK_CONSEIL_REF_PROJET FOREIGN KEY (ref_utilisateur) REFERENCES utilisateur(id_utilisateur));
+type VARCHAR (255) NOT NULL);
