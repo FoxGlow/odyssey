@@ -9,7 +9,7 @@ class FlowCoverageTest extends TestCase {
 
     public function testWithBadCoverage() {
         $flow_coverage = new FlowCoverage(file_get_contents('diagramIncorrect.bpmn'), file_get_contents('MCF_correct.drawio'));
-        $this->assertEquals($flow_coverage->getFlows(), array(
+        $this->assertNotEquals($flow_coverage->getFlows(), array(
             "Coverage" => 100, "Feedbacks" => array("Aucun probème détecté")
         ));
     }

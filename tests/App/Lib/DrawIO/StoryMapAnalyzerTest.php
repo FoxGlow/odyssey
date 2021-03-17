@@ -22,7 +22,7 @@ class StoryMapAnalyzerTest extends TestCase {
 
     public function testFlowsWithIncorrectFile() {
         $this->story_map_analyzer->loadFileContent(file_get_contents('STORYMAP_faux.drawio'));
-        $this->assertEquals($this->story_map_analyzer->getFlows(), array(
+        $this->assertNotEquals($this->story_map_analyzer->getFlows(), array(
             "T01. s'inscrire", "T02. creer un projet", "T03. collaborer"
         ));
     }

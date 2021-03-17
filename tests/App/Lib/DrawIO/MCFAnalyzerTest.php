@@ -22,7 +22,7 @@ class MCFAnalyzerTest extends TestCase {
 
     public function testFlowsWithIncorrectFile() {
         $this->mcf_analyzer->loadFileContent(file_get_contents('MCF_faux.drawio'));
-        $this->assertEquals($this->mcf_analyzer->getFlows(), array(
+        $this->assertNotEquals($this->mcf_analyzer->getFlows(), array(
             'F01. coordonnées', 'F02. notification'
         ));
     }
