@@ -9,33 +9,33 @@ class BPMNAnalyzerTest extends TestCase {
     
     private $bpmn_analyzer;
 
-    protected function setUp() {
+    protected function setUp() : void {
         $this->bpmn_analyzer = new BPMNAnalyzer;
     }
 
     public function testFlowsWithCorrectFile(){
-        $this->bpmn_analyzer->loadFileContent(file_get_contents('diagramCorrect.bpmn'));
+        $this->bpmn_analyzer->loadFileContent(file_get_contents('tests/App/Lib/BPMNIO/diagramCorrect.bpmn'));
         $this->assertEquals($this->bpmn_analyzer->getFlows(), array(
             'F01. coordonnées', 'F02. notification' 
         ));
     }
 
     public function testActivitiesWithCorrectFile(){
-        $this->bpmn_analyzer->loadFileContent(file_get_contents('diagramCorrect.bpmn'));
+        $this->bpmn_analyzer->loadFileContent(file_get_contents('tests/App/Lib/BPMNIO/diagramCorrect.bpmn'));
         $this->assertEquals($this->bpmn_analyzer->getActivities(), array(
             "T01. s'inscrire", "T02. creer un projet", "T03. collaborer"
         ));
     }
 
     public function testFlowsWithIncorrectFile(){
-        $this->bpmn_analyzer->loadFileContent(file_get_contents('diagramIncorrect.bpmn'));
+        $this->bpmn_analyzer->loadFileContent(file_get_contents('tests/App/Lib/BPMNIO/diagramIncorrect.bpmn'));
         $this->assertNotEquals($this->bpmn_analyzer->getFlows(), array(
             'F01. coordonnées', 'F02. notification' 
         ));
     }
 
     public function testActivitiesWithIncorrectFile(){
-        $this->bpmn_analyzer->loadFileContent(file_get_contents('diagramIncorrec.bpmn'));
+        $this->bpmn_analyzer->loadFileContent(file_get_contents('tests/App/Lib/BPMNIO/diagramIncorrect.bpmn'));
         $this->assertNotEquals($this->bpmn_analyzer->getActivities(), array(
             "T01. s'inscrire", "T02. creer un projet", "T03. collaborer"
         ));

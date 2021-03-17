@@ -9,19 +9,19 @@ class MCFAnalyzerTest extends TestCase {
 
     private $mcf_analyzer;
 
-    protected function setUp() {
+    protected function setUp() : void {
         $this->mcf_analyzer = new MCFAnalyzer;
     }
 
     public function testFlowsWithCorrectFile() {
-        $this->mcf_analyzer->loadFileContent(file_get_contents('MCF_correct.drawio'));
+        $this->mcf_analyzer->loadFileContent(file_get_contents('tests/App/Lib/DrawIO/MCF_correct.drawio'));
         $this->assertEquals($this->mcf_analyzer->getFlows(), array(
             'F01. coordonnées', 'F02. notification'
         ));
     }
 
     public function testFlowsWithIncorrectFile() {
-        $this->mcf_analyzer->loadFileContent(file_get_contents('MCF_faux.drawio'));
+        $this->mcf_analyzer->loadFileContent(file_get_contents('tests/App/Lib/DrawIO/MCF_faux.drawio'));
         $this->assertNotEquals($this->mcf_analyzer->getFlows(), array(
             'F01. coordonnées', 'F02. notification'
         ));
