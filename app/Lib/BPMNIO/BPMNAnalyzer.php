@@ -56,7 +56,7 @@ class BPMNAnalyzer {
     public function loadFileContent(string $file_content) {
         $this->file_content = $file_content;
         $this->index = 1;
-        $this->result = array("Activités" => array(), "Flux" => array());
+        $this->result = array("activities" => array(), "flows" => array());
         return $this;
     }
     
@@ -226,7 +226,8 @@ class BPMNAnalyzer {
      * @return array the list of flows
      */
     public function getFlows() : array {
-        return $this->iterateThrough($this->analyze())['flows'];
+        $this->iterateThrough($this->analyze());
+        return $this->getResult()['flows'];
     }
 
     /**
@@ -234,7 +235,8 @@ class BPMNAnalyzer {
      * @return array the list of activities
      */
     public function getActivities() : array {
-        return $this->iterateThrough($this->analyze())['activities'];
+        $this->iterateThrough($this->analyze());
+        return $this->getResult()['activities'];
     }
 
 }
