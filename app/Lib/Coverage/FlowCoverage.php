@@ -29,7 +29,7 @@ class FlowCoverage {
         $this->mcf_analyzer->loadFileContent($mfc_content);
     }
 
-    private function analyzeCoverage() : array {
+    public function analyzeCoverage() : array {
         $bpmn_flows = $this->bpmn_analyzer->getFlows();
         $mcf_flows = $this->mcf_analyzer->getFlows();
         
@@ -42,7 +42,7 @@ class FlowCoverage {
      * @param array $mfcFlows the list of mfc flows
      * @return array An array containing the coverage percentage and a list of feedbacks
      */
-    public function analyzeConsistency(array $bpmn_flows, array $mfc_flows) : array {
+    private function analyzeConsistency(array $bpmn_flows, array $mfc_flows) : array {
         $number_covered = 0;
         $different_size = false;
         $missing_bpmn_flow_in_mcf = array();
@@ -68,7 +68,7 @@ class FlowCoverage {
         foreach($mfc_flows as $mfc_flow) {
             $covered = false;
             foreach ($bpmn_flows as $bpmn_flow) {
-                if ($mcf_flow == $bpmn_flow)
+                if ($mfc_flow == $bpmn_flow)
                     $covered = true;
             }
             if (!$covered)
@@ -77,7 +77,7 @@ class FlowCoverage {
 
         if ($number_covered == count($bpmn_flows) && $different_size == false) {
             $result["Coverage"] = 100;
-            array_push($result["Feedbacks"], "Aucun probème détecté");
+            array_push($result["Feedbacks"], "Aucun problème détecté, tous les flux sont présents dans le bpmn");
             return $result;
         }
 

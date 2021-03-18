@@ -69,7 +69,7 @@ class ActivityCoverage {
                 array_push($result["Feedbacks"], "il y'a des épics manquantes dans le bpmn");
             
             $size = count($storyMap_epics);
-            array_push($result["Coverage"], $number_covered*100/$size); 
+            $result["Coverage"] = $number_covered*100/$size; 
 
             foreach ($missing_storyMap_epic_in_bpmn as $epic)
                 array_push ($result["Feedbacks"], "L'épic {$epic} de la story map n'apparait pas dans le BPMN");

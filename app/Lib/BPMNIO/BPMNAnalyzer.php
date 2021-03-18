@@ -203,7 +203,7 @@ class BPMNAnalyzer {
         if (in_array($tags[0], $tasks)) {
             foreach ($tags[3] as $attribute) {
                 if ($attribute[0] == "name") {
-                    array_push($this->result["activities"], $attribute[1]);
+                    array_push($this->result["activities"], trim($attribute[1]));
                 }
             }
         }
@@ -211,7 +211,7 @@ class BPMNAnalyzer {
         if ($tags[0] == "bpmn:messageFlow") {
             foreach ($tags[3] as $attribute) {
                 if ($attribute[0] == "name") {
-                    array_push($this->result["flows"], $attribute[1]);
+                    array_push($this->result["flows"], trim($attribute[1]));
                 }
             }
         }

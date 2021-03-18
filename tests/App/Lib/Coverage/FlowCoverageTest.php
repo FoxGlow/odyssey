@@ -10,14 +10,14 @@ class FlowCoverageTest extends TestCase {
     public function testWithBadCoverage() {
         $flow_coverage = new FlowCoverage(file_get_contents('tests/App/Lib/Coverage/diagramIncorrect.bpmn'), file_get_contents('tests/App/Lib/Coverage/MCF_correct.drawio'));
         $this->assertNotEquals($flow_coverage->analyzeCoverage(), array(
-            "Coverage" => 100, "Feedbacks" => array("Aucun probème détecté")
+            "Coverage" => 100, "Feedbacks" => array("Aucun problème détecté, tous les flux sont présents dans le bpmn")
         ));
     }
 
     public function testWithGoodCoverage() {
         $flow_coverage = new FlowCoverage(file_get_contents('tests/App/Lib/Coverage/diagramCorrect.bpmn'), file_get_contents('tests/App/Lib/Coverage/MCF_correct.drawio'));
         $this->assertEquals($flow_coverage->analyzeCoverage(), array(
-            "Coverage" => 100, "Feedbacks" => array("Aucun probème détecté")
+            "Coverage" => 100, "Feedbacks" => array("Aucun problème détecté, tous les flux sont présents dans le bpmn")
         ));
     }
 
