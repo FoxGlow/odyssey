@@ -1,3 +1,23 @@
 <div class="analysis-card">
     <h2>Feedbacks</h2>
+
+    <div class="coverages">
+        {% for feedback in feedbacks %}
+            <div>
+            {% if feedback.type == "flow" %}
+                <span class="strong">MCF - BPMN</span>
+                <span class="coverage">{{ feedback.taux_de_couverture }}%</span>
+            {% elseif feedback.type == "activity" %}
+                <span class="strong">Story-map - BPMN</span>
+                <span class="coverage">{{ feedback.taux_de_couverture }}%</span>
+            {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="messages">
+        {% for feedback in feedbacks %}
+            <span>{{ feedback.message }}</span><br>
+        {% endfor %}
+    </div>
 </div>
