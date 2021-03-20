@@ -9,6 +9,7 @@ namespace App\Controllers;
 
 use App\Entities\AdviceEntity;
 use App\Entities\AssociateEntity;
+use App\Entities\FeedbackEntity;
 use App\Entities\MessageEntity;
 use App\Entities\ProjectEntity;
 
@@ -58,16 +59,20 @@ class ProjectController extends AppController {
         $associate_entity = new AssociateEntity;
         $message_entity = new MessageEntity;
         $advice_entity = new AdviceEntity;
+        $feedback_entity = new FeedbackEntity;
 
         $project = $project_entity->get($projectId);
         $associates = $associate_entity->getForProject($projectId);
         $messages = $message_entity->getForProject($projectId);
         $advice = $advice_entity->getRandomAdvice();
+        $feedbacks = $feedback_entity->getForProject($projectId);
+
         echo $this->container->get('twig')->render('/pages/project/view.html.twig', [
             'project' => $project,
             'associates' => $associates,
             'messages' => $messages,
-            'advice' => $advice
+            'advice' => $advice,
+            'feedbacks' => $feedbacks
         ]);
     }
 
