@@ -45,8 +45,26 @@ class FileEntity extends BaseEntity {
         return $res;
     }
 
-    public function exist() {
+    public function getFileForProject(string $category, int $projectId) {
+        if (!in_array($category, $this->categories)) return null;
+        $request = "SELECT fichier, nom FROM {$category}
+                WHERE ref_projet = :projectId";
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        return $res;
+    }
 
+    public function exist(string $category, int $projectId) {
+        if (!in_array($category, $this->categories)) return null;
+        $request = "SELECT id_{$category} FROM {$category}
+                WHERE ref_projet = :projectId";
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        return $res;
     }
 
 }
