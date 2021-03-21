@@ -17,7 +17,6 @@ class AssociateController extends AppController {
         if(!$this->isUserLeaderOf($projectId))
             $this->redirect('/project/view/' . $projectId);
         
-        // VERIF
         $user_entity = new UserEntity;
         $userId = $user_entity->exists($mail_address);
         if (!is_null($userId)) {
@@ -32,11 +31,16 @@ class AssociateController extends AppController {
         if (!$this->isUserAssociatedTo($projectId))
             $this->redirect('/project/list');
 
-        // VERIF
         $associate_entity = new AssociateEntity;
-        $res = $associate_entity->delete($associateId, $projectId);
+        $associate = $associate_entity->associateTo($associateId, $projectId);
+        // Verify that leader can't delete himself
+        if (!is_null($associate) && $this->isUserLeaderOf($projectId) && $this->sessionGet('userId') != $associate['ref_utilisateur'])
+            $associate_entity->delete($associateId, $projectId);
+        // Verify user delete himself only
+        elseif (!is_null($associate) && !$this->isUserLeaderOf($projectId) && $this->sessionGet('userId') == $associate['ref_utilisateur'])
+            $associate_entity->delete($associateId, $projectId);
 
-        $this->redirect('/project/view' . $projectId);
+        $this->redirect('/project/view/' . $projectId);
     }
 
 }
