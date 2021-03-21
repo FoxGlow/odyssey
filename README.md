@@ -1,10 +1,12 @@
 # Odyssey
 
+___
+
 ## Présentation
 
 Cette application permet aux étudiants, professeurs et business analysts de stocker 
-leurs projet pouvant être couplé avec un système de collaboration, ainsi que de contrôler la 
-cohérence de leurs axes d'analyse et de détecter les carences, afin d'avoir une analyse 
+leurs projets et de les partager via un système de collaboration, contrôler la 
+cohérence de leurs axes d'analyse et détecter les carences, afin d'avoir une analyse 
 complète et intègre.    
 
 **Odyssey** est une application open source distribuée sous licence MIT.
