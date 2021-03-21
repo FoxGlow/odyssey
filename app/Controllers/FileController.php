@@ -45,14 +45,15 @@ class FileController extends AppController {
         $this->redirectIfUserNotAuth('/user/login');
         if (!$this->isUserAssociatedTo($projectId))
             $this->redirect('/project/list');
-        
-        // VERIF
+
+        $file_entity = new FileEntity;
+        if ($file_entity->exist($category, $projectId))
+            $this->redirect('/project/view/' . $projectId);
 
         $name = $_FILES['file']['name'];
         $content = file_get_contents($_FILES['file']['tmp_name']);
 
-        $file_entity = new FileEntity;
-        $res = $file_entity->importFile($category, $name, $content, $projectId);
+        $file_entity->importFile($category, $name, $content, $projectId);
 
         // Is it possible to analyze ?
         switch ($category) {
@@ -96,10 +97,11 @@ class FileController extends AppController {
         if (!$this->isUserAssociatedTo($projectId))
             $this->redirect('/project/list');
 
-        // VERIF
         $file_entity = new FileEntity;
-        $res = $file_entity->delete($category, $fileId);
-        $this->deleteFeedbackAssociated($category, $projectId);
+        if ($file_entity->exist($category, $projectId)) {
+            $res = $file_entity->delete($category, $fileId);
+            $this->deleteFeedbackAssociated($category, $projectId);
+        }
 
         $this->redirect('/project/view/' . $projectId);
     }
@@ -109,17 +111,20 @@ class FileController extends AppController {
         if (!$this->isUserAssociatedTo($projectId))
             $this->redirect('/project/list');
             
-        // VERIF
         $file_entity = new FileEntity;
-        $file = $file_entity->getFile($category, $fileId);
-
-        $file_name = $file['nom'];
-        $file_content = $file['fichier'];
-        $f = fopen($file_name, 'w');
-        fwrite($f, $file_content);
-        fclose($f);
-        header("Content-disposition: attachment;filename=$file_name");
-        readfile($file_name);
+        if ($file_entity->exist($category, $projectId)) {
+            $file = $file_entity->getFile($category, $fileId);
+            $file_name = $file['nom'];
+            $file_content = $file['fichier'];
+            $f = fopen($file_name, 'w');
+            fwrite($f, $file_content);
+            fclose($f);
+            header("Content-disposition: attachment;filename=$file_name");
+            readfile($file_name);
+        }
+        else {
+            $this->redirect('/project/view/' . $projectId);
+        }
     }
 
 }
