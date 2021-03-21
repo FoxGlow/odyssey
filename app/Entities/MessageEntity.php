@@ -35,7 +35,8 @@ class MessageEntity extends BaseEntity {
             utilisateur.id_utilisateur, utilisateur.nom, utilisateur.prenom
             FROM message
             JOIN utilisateur ON utilisateur.id_utilisateur = message.ref_utilisateur
-            WHERE message.ref_projet = :projectId';
+            WHERE message.ref_projet = :projectId
+            ORDER BY id_message DESC';
         $stmt = $this->db_connection::getInstance()->prepare($request);
         $stmt->bindValue(':projectId', $projectId);
         $stmt->execute();

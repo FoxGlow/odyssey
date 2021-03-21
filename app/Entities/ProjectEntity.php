@@ -37,7 +37,8 @@ class ProjectEntity extends BaseEntity {
             WHERE associe.ref_utilisateur = :userId
             GROUP BY projet.id_projet, projet.nom, projet.description, projet.ref_chef,
             utilisateur.id_utilisateur, bpmn.id_bpmn, story_map.id_story_map, mcd.id_mcd,
-            cvo.id_cvo, mcf.id_mcf';
+            cvo.id_cvo, mcf.id_mcf
+            ORDER BY id_projet DESC';
         $stmt = $this->db_connection::getInstance()->prepare($request);
         $stmt->bindValue(':userId', $userId);
         $stmt->execute();
