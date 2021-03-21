@@ -18,7 +18,8 @@
                 {% if associate.ref_utilisateur == project.ref_chef %}
                     <span class="leader">chef</span>
                 {% endif %}
-                {% if (userId == project.ref_chef) or (userId == associate.ref_utilisateur) %}
+                {% if (userId == project.ref_chef) and (userId == associate.ref_utilisateur) %}
+				{% elseif (userId == project.ref_chef) or (userId == associate.ref_utilisateur) %}
                     <a class="delete-link" href="/associate/delete/{{ associate.ref_utilisateur }}/{{ project.id_projet }}">Supprimer</a>
                 {% endif %}
 			</div>

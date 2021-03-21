@@ -2,6 +2,7 @@
     <h2>Feedbacks</h2>
 
     <div class="coverages">
+        <h3>Taux de couvertures</h3>
         {% for feedback in feedbacks %}
             <div>
             {% if feedback.type == "flow" %}
@@ -15,9 +16,18 @@
         {% endfor %}
     </div>
 
-    <div class="messages">
+    <div class="feedbacks">
+    <h3>Détails</h3>
         {% for feedback in feedbacks %}
-            <span>{{ feedback.message }}</span><br>
+            <span class="type">
+                {% if feedback.type == "flow" %}
+                    MCF - BPMN
+                {% elseif feedback.type == "activity" %}
+                    Story-map - BPMN
+                {% endif %}
+                :
+            </span>
+            <span>{{ feedback.message|replace({'\\n': '<br>'})|raw }}</span><br>
         {% endfor %}
     </div>
 </div>
