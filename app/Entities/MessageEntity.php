@@ -44,4 +44,13 @@ class MessageEntity extends BaseEntity {
         return $res;
     }
 
+    public function get(int $messageId) {
+        $request = 'SELECT ref_utilisateur FROM message WHERE id_message = :messageId';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':messageId', $messageId);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        return $res;
+    }
+
 }
