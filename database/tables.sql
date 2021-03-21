@@ -20,7 +20,8 @@ date_ DATETIME NOT NULL,
 ref_utilisateur INT NOT NULL,
 ref_projet INT NOT NULL,
 CONSTRAINT FK_REF_UTILISATEUR FOREIGN KEY (ref_utilisateur) REFERENCES utilisateur(id_utilisateur),  
-CONSTRAINT FK_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
+CONSTRAINT FK_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet)
+ON DELETE CASCADE);
 
 CREATE TABLE associe(
     ref_utilisateur INT NOT NULL AUTO_INCREMENT,
@@ -39,7 +40,8 @@ type VARCHAR(255) NOT NULL,
 message VARCHAR (1024),
 taux_de_couverture INT,
 ref_projet INT NOT NULL,
-CONSTRAINT FK_FEEDBACK_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
+CONSTRAINT FK_FEEDBACK_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet)
+ON DELETE CASCADE);
 
 CREATE TABLE mcd( 
 id_mcd INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -47,7 +49,8 @@ fichier MEDIUMBLOB NOT NULL,
 nom VARCHAR(255) NOT NULL,
 ref_projet INT NOT NULL,
 UNIQUE KEY unique_ref_projet (ref_projet),
-CONSTRAINT FK_MCD_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
+CONSTRAINT FK_MCD_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet)
+ON DELETE CASCADE);
 
 CREATE TABLE cvo( 
 id_cvo INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -55,7 +58,8 @@ fichier MEDIUMBLOB NOT NULL,
 nom VARCHAR(255) NOT NULL,
 ref_projet INT NOT NULL,
 UNIQUE KEY unique_ref_projet (ref_projet),
-CONSTRAINT FK_CVO_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
+CONSTRAINT FK_CVO_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet)
+ON DELETE CASCADE);
 
 CREATE TABLE bpmn( 
 id_bpmn INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -63,7 +67,8 @@ fichier MEDIUMBLOB NOT NULL,
 nom VARCHAR(255) NOT NULL,
 ref_projet INT NOT NULL,
 UNIQUE KEY unique_ref_projet (ref_projet),
-CONSTRAINT FK_BPMN_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
+CONSTRAINT FK_BPMN_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet)
+ON DELETE CASCADE);
 
 CREATE TABLE story_map( 
 id_story_map INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -71,7 +76,8 @@ fichier MEDIUMBLOB NOT NULL,
 nom VARCHAR(255) NOT NULL,
 ref_projet INT NOT NULL,
 UNIQUE KEY unique_ref_projet (ref_projet),
-CONSTRAINT FK_STORY_MAP_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
+CONSTRAINT FK_STORY_MAP_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet)
+ON DELETE CASCADE);
 
 CREATE TABLE mcf( 
 id_mcf int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -79,7 +85,8 @@ fichier MEDIUMBLOB NOT NULL,
 nom VARCHAR(255) NOT NULL,
 ref_projet INT NOT NULL,
 UNIQUE KEY unique_ref_projet (ref_projet),
-CONSTRAINT FK_MCF_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet));
+CONSTRAINT FK_MCF_REF_PROJET FOREIGN KEY (ref_projet) REFERENCES projet(id_projet)
+ON DELETE CASCADE);
 
 CREATE TABLE conseil (
 id_conseil INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
