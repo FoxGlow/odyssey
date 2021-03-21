@@ -37,7 +37,9 @@ class ProjectController extends AppController {
             $associate_entity = new AssociateEntity;
             $res = $associate_entity->add($this->sessionGet('userId'), $projectId);
             
-            echo $this->container->get('twig')->render('/pages/project/success-create.html.twig');
+            echo $this->container->get('twig')->render('/pages/project/success-create.html.twig', [
+                'projectId' => $projectId
+            ]);
         }
     }
 
