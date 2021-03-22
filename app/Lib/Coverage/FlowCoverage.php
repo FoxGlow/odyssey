@@ -32,7 +32,7 @@ class FlowCoverage {
     public function analyzeCoverage() : array {
         $bpmn_flows = $this->bpmn_analyzer->getFlows();
         $mcf_flows = $this->mcf_analyzer->getFlows();
-        
+
         return $this->analyzeConsistency($bpmn_flows, $mcf_flows);
     }
 
@@ -43,6 +43,16 @@ class FlowCoverage {
      * @return array An array containing the coverage percentage and a list of feedbacks
      */
     private function analyzeConsistency(array $bpmn_flows, array $mfc_flows) : array {
+        if (count($bpmn_flows) == 0) {
+            return array(
+                "Coverage" => 0, "Feedbacks" => array("Le fichier BPMN est vide ou n'est pas du bon format.")
+            );
+        }
+        if (count($mfc_flows) == 0) {
+            return array(
+                "Coverage" => 0, "Feedbacks" => array("Le fichier MCF est vide ou n'est pas du bon format.")
+            );
+        }
         $number_covered = 0;
         $different_size = false;
         $missing_bpmn_flow_in_mcf = array();

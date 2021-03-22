@@ -32,7 +32,7 @@ class ActivityCoverage {
     public function analyzeCoverage() : array {
         $bpmn_activities = $this->bpmn_analyzer->getActivities();
         $storyMap_epics = $this->storyMap_analyzer->getEpics();
-        
+
         return $this->analyzeConsistency($bpmn_activities, $storyMap_epics);
     }
 
@@ -43,6 +43,17 @@ class ActivityCoverage {
      * @return array An array containing the coverage percentage and a list of feedbacks
      */
     private function analyzeConsistency(array $bpmn_activities, array $storyMap_epics) : array {
+        if (count($bpmn_activities) == 0) {
+            return array(
+                "Coverage" => 0, "Feedbacks" => array("Le fichier BPMN est vide ou n'est pas du bon format.")
+            );
+        }
+        if (count($storyMap_epics) == 0) {
+            return array(
+                "Coverage" => 0, "Feedbacks" => array("Le fichier Story-Map est vide ou n'est pas du bon format.")
+            );
+        }
+
         $number_covered = 0;
         $missing_storyMap_epic_in_bpmn = array();
 
@@ -51,9 +62,10 @@ class ActivityCoverage {
         foreach($storyMap_epics as $storyMap_epic) {
             $covered = false;
             foreach ($bpmn_activities as $bpmn_activity) {
-                if ($storyMap_epic == $bpmn_activity)
+                if ($storyMap_epic == $bpmn_activity) {
                     $number_covered++;
                     $covered = true;
+                }
             }
             if (!$covered)
                 array_push($missing_storyMap_epic_in_bpmn, $storyMap_epic);
@@ -66,11 +78,10 @@ class ActivityCoverage {
         }
 
         else {
-                array_push($result["Feedbacks"], "il y'a des épics manquantes dans le bpmn");
+            array_push($result["Feedbacks"], "il y'a des épics manquantes dans le bpmn");
             
             $size = count($storyMap_epics);
             $result["Coverage"] = $number_covered*100/$size; 
-
             foreach ($missing_storyMap_epic_in_bpmn as $epic)
                 array_push ($result["Feedbacks"], "L'épic {$epic} de la story map n'apparait pas dans le BPMN");
             
