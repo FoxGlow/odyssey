@@ -22,10 +22,22 @@ class ProjectEntity extends BaseEntity {
         return $this->db_connection::getInstance()->lastInsertId();
     }
 
+    public function nbAssociates(int $projectId) {
+        $request = 'SELECT associe.ref_projet, COUNT(associe.ref_utilisateur) AS nb_collaborateurs
+                FROM projet
+                LEFT JOIN associe ON associe.ref_projet = projet.id_projet
+                WHERE projet.id_projet = :projectId
+                GROUP BY associe.ref_projet';
+        $stmt = $this->db_connection::getInstance()->prepare($request);
+        $stmt->bindValue(':projectId', $projectId);
+        $stmt->execute();
+        $res = $stmt->fetch();
+        return $res;
+    }
+
     public function list(int $userId) {
         $request = 'SELECT projet.id_projet, projet.nom, projet.description, projet.ref_chef,
-            utilisateur.id_utilisateur, COUNT(associe.ref_utilisateur) AS nb_collaborateurs,
-            bpmn.id_bpmn, story_map.id_story_map, mcd.id_mcd, cvo.id_cvo, mcf.id_mcf
+            utilisateur.id_utilisateur, bpmn.id_bpmn, story_map.id_story_map, mcd.id_mcd, cvo.id_cvo, mcf.id_mcf
             FROM projet
             LEFT JOIN utilisateur ON utilisateur.id_utilisateur = projet.ref_chef
             LEFT JOIN associe ON associe.ref_projet = projet.id_projet
