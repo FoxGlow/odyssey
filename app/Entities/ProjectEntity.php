@@ -26,7 +26,7 @@ class ProjectEntity extends BaseEntity {
         $request = 'SELECT projet.id_projet, projet.nom, projet.description, projet.ref_chef,
             utilisateur.id_utilisateur, COUNT(associe.ref_utilisateur) AS nb_collaborateurs,
             bpmn.id_bpmn, story_map.id_story_map, mcd.id_mcd, cvo.id_cvo, mcf.id_mcf
-            FROM PROJET
+            FROM projet
             LEFT JOIN utilisateur ON utilisateur.id_utilisateur = projet.ref_chef
             LEFT JOIN associe ON associe.ref_projet = projet.id_projet
             LEFT JOIN bpmn ON bpmn.ref_projet = projet.id_projet
