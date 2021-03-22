@@ -47,6 +47,13 @@ class ProjectController extends AppController {
         $this->redirectIfUserNotAuth('/user/login');
         $project_entity = new ProjectEntity;
         $projects = $project_entity->list($this->sessionGet('userId'));
+
+        if (!is_null($projects)) {
+            foreach($projects as &$project) {
+                $nb_associates = $project_entity->nbAssociates($project['id_projet']);
+                $project['nb_collaborateurs'] = $nb_associates['nb_collaborateurs'];
+            }
+        }
         echo $this->container->get('twig')->render('/pages/project/list.html.twig', [
             'projects' => $projects
         ]);
