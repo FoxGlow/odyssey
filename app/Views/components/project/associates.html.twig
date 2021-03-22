@@ -1,6 +1,7 @@
 <div class="associates-card">
 	<h2>Collaborateurs</h2>
 
+	{% if userId == project.ref_chef %}
 	<form action="/associate/add" method="post">
 		<label for="mail_address">Adresse mail</label>
 		<input id="mail_address" type="text" name="mail_address">
@@ -9,6 +10,7 @@
 			<input class="bg-blue" type="submit" value="Ajouter">
 		</div>
 	</form>
+	{% endif %}
 
 	<div class="associates">
         {% for associate in associates %}
