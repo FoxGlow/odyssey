@@ -50,6 +50,9 @@ class FileController extends AppController {
         if ($file_entity->exist($category, $projectId))
             $this->redirect('/project/view/' . $projectId);
 
+        if ($_FILES['file']['error'] != 0) 
+            $this->redirect('/project/view/' . $projectId);
+        
         $name = $_FILES['file']['name'];
         $content = file_get_contents($_FILES['file']['tmp_name']);
 
